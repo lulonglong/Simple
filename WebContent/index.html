@@ -62,8 +62,8 @@ a:visted {
 	margin: 5px 5px 0px 0px;
 	color: #999;
 	font-size: 16px;
-	height: 52px; 
-	float : right;
+	height: 52px;
+	float: right;
 	text-decoration: none;
 	float: right;
 }
@@ -77,28 +77,38 @@ a:visted {
 	opacity: 0;
 }
 
-#about{
-position:absolute;
-clear: both;
-color: #999;
-font-size: 16px;
-text-align: left;
-right:20px;
-top:20px;
-display:none;
+#about {
+	position: absolute;
+	clear: both;
+	color: #999;
+	font-size: 16px;
+	text-align: left;
+	right: 20px;
+	top: 20px;
+	display: none;
 }
-
 </style>
 <script>
 	$(function() {
 		$("#sortable").sortable();
 		$("#sortable").disableSelection();
-		$("#search").keydown(
+		$("#search")
+		.keydown(
 				function(e) {
 					if (e.keyCode == 13) {
-						window.open("http://www.baidu.com/s?wd="
-								+ encodeURIComponent($("#search").val()),
-								"_blank");
+						var keyword = $("#search").val();
+						if (keyword.length > 0
+								&& keyword.charAt(0) == ' ') {
+							window.open(
+									"https://www.google.com.hk/search?q="
+											+ encodeURIComponent($(
+													"#search").val()),
+									"_blank");
+						} else {
+							window.open("http://www.baidu.com/s?wd="
+									+ encodeURIComponent($("#search")
+											.val()), "_blank");
+						}
 					}
 				});
 	});
@@ -113,7 +123,7 @@ display:none;
 		$("#logo").fadeTo(1000, 1, function() {
 			setTimeout(function() {
 				$("#logo").fadeTo(1000, 0);
-			}, 2000);
+			}, 1000);
 		});
 	});
 </script>
@@ -175,21 +185,15 @@ display:none;
 		</div>
 	</div>
 	<div id="about">
-	<ol>
-	<li>
-	按空格键，可将焦点置于搜索框
-	</li>
-	<li>
-	默认搜索为百度，搜索框内关键词前空一格则使用google搜索
-	</li>
-	<li>
-	链接可拖动调换位置
-	</li>
-	<li>
-	版权归<a href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
-	</li>
-	</ol>
-	<a style="float:right;text-decoration: none;" href="#" onclick="$('#about').hide('fast');">关闭</a>
+		<ol>
+			<li>按空格键，可将焦点置于搜索框</li>
+			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
+			<li>链接可拖动调换位置</li>
+			<li>版权归<a href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
+			</li>
+		</ol>
+		<a style="float: right; text-decoration: none;" href="#"
+			onclick="$('#about').hide('fast');">关闭</a>
 	</div>
 </body>
 </html>
