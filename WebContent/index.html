@@ -48,15 +48,6 @@ a:visted {
 	color: green;
 }
 
-#search {
-	width: 40%;
-	height: 24px;
-	font: 16px arial
-}
-
-#searchContainer {
-	margin-top: 50px
-}
 
 #head a {
 	margin: 5px 5px 0px 0px;
@@ -72,9 +63,18 @@ a:visted {
 	clear: both;
 	font-size: 8em;
 	font-family: serif;
-	color: green;
 	margin-top: 10px;
 	opacity: 0;
+}
+
+#searchContainer {
+	margin-top: 50px
+}
+
+#search {
+	width: 40%;
+	height: 24px;
+	font: 16px arial
 }
 
 #about {
@@ -120,18 +120,28 @@ a:visted {
 	});
 
 	$(document).ready(function() {
+		var colorArray=["blue","orange","green","yellow","indigo","red","violet"]; 
+		$("#logo").css("color",colorArray[new Date().getDay()]);
 		$("#logo").fadeTo(1000, 1, function() {
 			setTimeout(function() {
 				$("#logo").fadeTo(1000, 0);
 			}, 1000);
 		});
 	});
+	
+	function showAbout(){
+		if($("#about").is(":hidden")){
+			$('#about').show('fast');
+		}else{
+			$('#about').hide('fast');
+		}
+	}
 </script>
 </head>
 <body>
 	<div>
 		<div id="head">
-			<a href="#" onclick="$('#about').show('fast');">帮助</a>
+			<a href="#" onclick="showAbout()">帮助</a>
 		</div>
 		<div id="logo">Simple</div>
 		<div id="searchContainer">
