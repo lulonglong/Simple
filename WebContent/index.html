@@ -48,7 +48,6 @@ a:visted {
 	color: green;
 }
 
-
 #head a {
 	margin: 5px 5px 0px 0px;
 	color: #999;
@@ -56,7 +55,6 @@ a:visted {
 	height: 52px;
 	float: right;
 	text-decoration: none;
-	float: right;
 }
 
 #logo {
@@ -82,39 +80,42 @@ a:visted {
 	clear: both;
 	color: #999;
 	font-size: 14px;
-	line-height:20px;
+	line-height: 20px;
 	text-align: left;
 	right: 20px;
 	top: 20px;
 	display: none;
+}
+
+#footer {
+	position: absolute;
+	width: 100%;
+	clear: both;
+	bottom: 0px;
 }
 </style>
 <script>
 	$(function() {
 		$("#sortable").sortable();
 		$("#sortable").disableSelection();
-		
+
 		//search baidu or google
-		$("#search")
-		.keydown(
+		$("#search").keydown(
 				function(e) {
-					if (e.ctrlKey==1&&e.keyCode==8){
+					if (e.ctrlKey == 1 && e.keyCode == 8) {
 						$("#search").val("");
 						return;
 					}
 					if (e.keyCode == 13) {
 						var keyword = $("#search").val();
-						if (keyword.length > 0
-								&& keyword.charAt(0) == ' ') {
-							window.open(
-									"https://www.google.com.hk/search?q="
-											+ encodeURIComponent($(
-													"#search").val()),
+						if (keyword.length > 0 && keyword.charAt(0) == ' ') {
+							window.open("https://www.google.com.hk/search?q="
+									+ encodeURIComponent($("#search").val()),
 									"_blank");
 						} else {
 							window.open("http://www.baidu.com/s?wd="
-									+ encodeURIComponent($("#search")
-											.val()), "_blank");
+									+ encodeURIComponent($("#search").val()),
+									"_blank");
 						}
 					}
 				});
@@ -126,26 +127,30 @@ a:visted {
 			$("#search").focus();
 		}
 	});
-	
-    //back this tab
-    window.onfocus = function(){$("#search").focus();}  
+
+	//back this tab
+	window.onfocus = function() {
+		$("#search").focus();
+	}
 
 	//load logo
-	$(document).ready(function() {
-		var colorArray=["#45b97c","green","violet","#faa755","#6950a1","#694d9f","#ef5b9c"]; 
-		$("#logo").css("color",colorArray[new Date().getDay()]);
-		$("#logo").fadeTo(1000, 1, function() {
-			setTimeout(function() {
-				$("#logo").fadeTo(1000, 0);
-			}, 1000);
-		});
-	});
-	
+	$(document).ready(
+			function() {
+				var colorArray = [ "#45b97c", "green", "violet", "#faa755",
+						"#6950a1", "#694d9f", "#ef5b9c" ];
+				$("#logo").css("color", colorArray[new Date().getDay()]);
+				$("#logo").fadeTo(1000, 1, function() {
+					setTimeout(function() {
+						$("#logo").fadeTo(1000, 0);
+					}, 1000);
+				});
+			});
+
 	//show or hide about
-	function showAbout(){
-		if($("#about").is(":hidden")){
+	function showAbout() {
+		if ($("#about").is(":hidden")) {
 			$('#about').show('fast');
-		}else{
+		} else {
 			$('#about').hide('fast');
 		}
 	}
@@ -206,13 +211,17 @@ a:visted {
 					style="background: url(img/cnblogs.png) no-repeat">博客园</a></li>
 			</ul>
 		</div>
+		<div id="footer">
+			<img src="img/poweredby.gif" />
+		</div>
 	</div>
 	<div id="about">
 		<ol>
 			<li>按空格键，可将焦点置于搜索框; 按 Ctrl+&lt;- 键，可清空搜索框</li>
 			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
 			<li>链接可拖动调换位置</li>
-			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<br/>版权归<a href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
+			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<br />版权归<a
+				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
 			</li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
