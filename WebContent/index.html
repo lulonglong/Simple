@@ -81,7 +81,8 @@ a:visted {
 	position: absolute;
 	clear: both;
 	color: #999;
-	font-size: 16px;
+	font-size: 14px;
+	line-height:20px;
 	text-align: left;
 	right: 20px;
 	top: 20px;
@@ -92,9 +93,15 @@ a:visted {
 	$(function() {
 		$("#sortable").sortable();
 		$("#sortable").disableSelection();
+		
+		//search baidu or google
 		$("#search")
 		.keydown(
 				function(e) {
+					if (e.ctrlKey==1&&e.keyCode==8){
+						$("#search").val("");
+						return;
+					}
 					if (e.keyCode == 13) {
 						var keyword = $("#search").val();
 						if (keyword.length > 0
@@ -113,12 +120,17 @@ a:visted {
 				});
 	});
 
+	//focus search action，when key space
 	$(document).keyup(function(e) {
 		if (e.keyCode == 32 && !$("#search").focus()) {
-			$("#search").focus().select();
+			$("#search").focus();
 		}
 	});
+	
+    //back this tab
+    window.onfocus = function(){$("#search").focus();}  
 
+	//load logo
 	$(document).ready(function() {
 		var colorArray=["blue","orange","green","yellow","indigo","red","violet"]; 
 		$("#logo").css("color",colorArray[new Date().getDay()]);
@@ -129,6 +141,7 @@ a:visted {
 		});
 	});
 	
+	//show or hide about
 	function showAbout(){
 		if($("#about").is(":hidden")){
 			$('#about').show('fast');
@@ -196,10 +209,10 @@ a:visted {
 	</div>
 	<div id="about">
 		<ol>
-			<li>按空格键，可将焦点置于搜索框</li>
+			<li>按空格键，可将焦点置于搜索框; 按 Ctrl+&lt;- 键，可清空搜索框</li>
 			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
 			<li>链接可拖动调换位置</li>
-			<li>版权归<a href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
+			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<br/>版权归<a href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
 			</li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
