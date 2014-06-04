@@ -1,0 +1,4 @@
+simplePage
+==========
+
+a simple homepage
