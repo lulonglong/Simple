@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="keywords" content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,hao123导航,360导航,搜狗导航">
-<meta name="description" content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，提供最简单便捷的上网导航服务。">
+<meta name="keywords"
+	content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,hao123导航,360导航,搜狗导航">
+<meta name="description"
+	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，提供最简单便捷的上网导航服务。">
 <title>Simple 最简洁的上网导航</title>
 <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <style>
 body {
 	margin: 0px;
 	background-color: white;
 	text-align: center;
-	font-family: Arial,Verdana,Geneva,sans-serif;
+	font-family: Arial, Verdana, Geneva, sans-serif;
 }
 
 a:active {
@@ -124,6 +127,12 @@ a:visted {
 				});
 	});
 
+	//window load
+	$(document).ready(function() {
+		loadWebSites();
+		loadLogo();
+	});
+
 	//focus search action，when key space
 	$(document).keyup(function(e) {
 		if (e.keyCode == 32 && !$("#search").focus()) {
@@ -131,19 +140,27 @@ a:visted {
 		}
 	});
 
+	function loadWebSites() {
+		$("#sortable").css("opacity", 0);
+		alert($.cookie('order'));
+		alert($.cookie('custom'));
+		$.cookie('order','[1,2,3,4]');
+		$.cookie('custom','[{"name":"Google","no","12"},{},{}]');
+		alert($.cookie('order'));
+		alert($.cookie('custom'));
+		$("#sortable").css("opacity", 1);
+	}
 
-	//load logo
-	$(document).ready(
-			function() {
-				var colorArray = [ "#45b97c", "green", "violet", "#faa755",
-						"#6950a1", "#4c4c4c", "#ef5b9c" ];
-				$("#logo").css("color", colorArray[new Date().getDay()]);
-				$("#logo").fadeTo(1000, 1, function() {
-					setTimeout(function() {
-						$("#logo").fadeTo(1000, 0);
-					}, 1000);
-				});
-			});
+	function loadLogo() {
+		var colorArray = [ "#45b97c", "green", "violet", "#faa755", "#6950a1",
+				"#4c4c4c", "#ef5b9c" ];
+		$("#logo").css("color", colorArray[new Date().getDay()]);
+		$("#logo").fadeTo(1000, 1, function() {
+			setTimeout(function() {
+				$("#logo").fadeTo(1000, 0);
+			}, 1000);
+		});
+	}
 
 	//show or hide about
 	function showAbout() {
@@ -162,7 +179,7 @@ a:visted {
 		</div>
 		<div id="logo">Simple</div>
 		<div id="searchContainer">
-			<input id="search" type="text" name="word" baiduSug= "2"/>
+			<input id="search" type="text" name="word" baiduSug="2" />
 		</div>
 		<div style="margin-top: 50px">
 			<ul id="sortable">
@@ -190,7 +207,7 @@ a:visted {
 					style="background: url(img/meituan.png) no-repeat 0px 2px">美 团</a></li>
 				<li><a href="http://www.alipay.com" target="_blank"
 					style="background: url(img/zhifubao.png) no-repeat 0px 2px">支付宝</a></li>
-					<li><a href="http://www.douban.com" target="_blank"
+				<li><a href="http://www.douban.com" target="_blank"
 					style="background: url(img/douban.png) no-repeat 0px 2px">豆 瓣</a></li>
 				<li><a href="http://www.zhihu.com" target="_blank"
 					style="background: url(img/zhihu.png) no-repeat 0px 2px">知 乎</a></li>
@@ -223,8 +240,8 @@ a:visted {
 			<li>按空格键，可将焦点置于搜索框; 按 Ctrl+&lt;- 键，可清空搜索框</li>
 			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
 			<li>链接可拖动调换位置</li>
-			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<br />版权归<a
-				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有
+			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<!-- <br />版权归<a
+				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有 -->
 			</li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
