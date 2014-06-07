@@ -8,98 +8,10 @@
 	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，提供最简单便捷的上网导航服务。">
 <title>Simple 最简洁的上网导航</title>
 <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/jquery.cookie.js"></script>
-<style>
-body {
-	margin: 0px;
-	background-color: white;
-	text-align: center;
-	font-family: Arial, Verdana, Geneva, sans-serif;
-}
-
-a:active {
-	color: green;
-	text-decoration: none;
-}
-
-a:visted {
-	color: green;
-	text-decoration: none;
-}
-
-#sortable {
-	list-style-type: none;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 50px;
-	width: 60%;
-	height: auto;
-}
-
-#sortable li {
-	margin: 5px 10px 10px 10px;
-	padding: 1px;
-	float: left;
-	min-width: 100px;
-	height: auto;
-	font-size: 1.1em;
-	display: block;
-}
-
-#sortable li a {
-	padding-left: 22px;
-	text-decoration: none;
-	color: #009c04;
-}
-
-#head a {
-	margin: 5px 5px 0px 0px;
-	color: #999;
-	font-size: 16px;
-	height: 52px;
-	float: right;
-	text-decoration: none;
-}
-
-#logo {
-	clear: both;
-	font-size: 8em;
-	font-family: serif;
-	margin-top: 10px;
-	opacity: 0;
-}
-
-#searchContainer {
-	margin-top: 50px
-}
-
-#search {
-	width: 40%;
-	height: 24px;
-	font: 16px arial
-}
-
-#about {
-	position: absolute;
-	clear: both;
-	color: #999;
-	font-size: 14px;
-	line-height: 20px;
-	text-align: left;
-	right: 20px;
-	top: 20px;
-	display: none;
-}
-
-#footer {
-	position: absolute;
-	width: 100%;
-	clear: both;
-	bottom: 0px;
-}
-</style>
 <script>
 	$(function() {
 		$("#sortable").sortable();
@@ -142,20 +54,25 @@ a:visted {
 
 	function loadWebSites() {
 		$("#sortable").css("opacity", 0);
-		$.cookie('order','[4,2,3,1]');
+		//$.cookie('order','[4,2,3,1,9,8,7,6,5,10,11,12,13,14,15,16,17,18,19,20,21,22]');
 		var order=$.cookie('order');
 		if(order!=undefined){
 			var custom=	$.cookie('custom');
 			if(custom!=undefined){
 				//add custom
 			}
+			
 			//change order
 			var orderObject=$.parseJSON(order)
 			$(orderObject).each(function(){
 				$("#sortable li[no='"+this+"']").appendTo($("#sortable"));
-				//alert(this);
 			});
+			
+			//remove deleted item
+			var deletedCount=$("#sortable li").length-orderObject.length;
+			$("#sortable li:lt("+deletedCount+")").remove();
 		}
+		
 		$("#sortable").css("opacity", 1);
 	}
 
@@ -201,41 +118,41 @@ a:visted {
 					style="background: url(img/sina.png) no-repeat 0px 2px">新 浪</a></li>
 				<li no="5"><a href="http://www.163.com" target="_blank"
 					style="background: url(img/163.png) no-repeat 0px 2px">网 易</a></li>
-				<li><a href="http://www.dianping.com" target="_blank"
+				<li no="6"><a href="http://www.dianping.com" target="_blank"
 					style="background: url(img/dianping.png) no-repeat 0px 2px">大众点评</a></li>
-				<li><a href="http://www.jd.com" target="_blank"
+				<li no="7"><a href="http://www.jd.com" target="_blank"
 					style="background: url(img/jd.png) no-repeat 0px 2px">京 东</a></li>
-				<li><a href="http://www.yixun.com" target="_blank"
+				<li no="8"><a href="http://www.yixun.com" target="_blank"
 					style="background: url(img/yixun.png) no-repeat 0px 2px">易 讯</a></li>
-				<li><a href="http://www.tmall.com" target="_blank"
+				<li no="9"><a href="http://www.tmall.com" target="_blank"
 					style="background: url(img/tmall.png) no-repeat 0px 2px">天 猫</a></li>
-				<li><a href="http://www.taobao.com" target="_blank"
+				<li no="10"><a href="http://www.taobao.com" target="_blank"
 					style="background: url(img/taobao.png) no-repeat 0px 2px">淘 宝</a></li>
-				<li><a href="http://www.meituan.com" target="_blank"
+				<li no="11"><a href="http://www.meituan.com" target="_blank"
 					style="background: url(img/meituan.png) no-repeat 0px 2px">美 团</a></li>
-				<li><a href="http://www.alipay.com" target="_blank"
+				<li no="12"><a href="http://www.alipay.com" target="_blank"
 					style="background: url(img/zhifubao.png) no-repeat 0px 2px">支付宝</a></li>
-				<li><a href="http://www.douban.com" target="_blank"
+				<li no="13"><a href="http://www.douban.com" target="_blank"
 					style="background: url(img/douban.png) no-repeat 0px 2px">豆 瓣</a></li>
-				<li><a href="http://www.zhihu.com" target="_blank"
+				<li no="14"><a href="http://www.zhihu.com" target="_blank"
 					style="background: url(img/zhihu.png) no-repeat 0px 2px">知 乎</a></li>
-				<li><a href="http://www.youku.com" target="_blank"
+				<li no="15"><a href="http://www.youku.com" target="_blank"
 					style="background: url(img/youku.png) no-repeat 0px 2px">优 酷</a></li>
-				<li><a href="http://www.iqiyi.com/" target="_blank"
+				<li no="16"><a href="http://www.iqiyi.com/" target="_blank"
 					style="background: url(img/iqiyi.png) no-repeat 0px 2px">爱奇艺</a></li>
-				<li><a href="http://www.12306.cn" target="_blank"
+				<li no="17"><a href="http://www.12306.cn" target="_blank"
 					style="background: url(img/12306.png) no-repeat 0px 2px">12306</a></li>
-				<li><a href="http://www.qunar.com" target="_blank"
+				<li no="18"><a href="http://www.qunar.com" target="_blank"
 					style="background: url(img/qunar.png) no-repeat 0px 2px">去哪儿</a></li>
-				<li><a href="http://www.renren.com" target="_blank"
+				<li no="19"><a href="http://www.renren.com" target="_blank"
 					style="background: url(img/renren.png) no-repeat 0px 2px">人人网</a></li>
-				<li><a href="http://www.weibo.com" target="_blank"
+				<li no="20"><a href="http://www.weibo.com" target="_blank"
 					style="background: url(img/weibo.png) no-repeat 0px 2px">新浪微博</a></li>
-				<li><a href="http://www.58.com" target="_blank"
+				<li no="21"><a href="http://www.58.com" target="_blank"
 					style="background: url(img/58.png) no-repeat 0px 2px">58同城</a></li>
-				<li><a href="http://www.anjuke.com" target="_blank"
+				<li no="22"><a href="http://www.anjuke.com" target="_blank"
 					style="background: url(img/anjuke.png) no-repeat 0px 2px">安居客</a></li>
-				<li><a href="http://www.cnblogs.com" target="_blank"
+				<li no="23"><a href="http://www.cnblogs.com" target="_blank"
 					style="background: url(img/cnblogs.png) no-repeat 0px 2px">博客园</a></li>
 			</ul>
 		</div>
