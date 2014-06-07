@@ -142,12 +142,20 @@ a:visted {
 
 	function loadWebSites() {
 		$("#sortable").css("opacity", 0);
-		alert($.cookie('order'));
-		alert($.cookie('custom'));
-		$.cookie('order','[1,2,3,4]');
-		$.cookie('custom','[{"name":"Google","no","12"},{},{}]');
-		alert($.cookie('order'));
-		alert($.cookie('custom'));
+		$.cookie('order','[4,2,3,1]');
+		var order=$.cookie('order');
+		if(order!=undefined){
+			var custom=	$.cookie('custom');
+			if(custom!=undefined){
+				//add custom
+			}
+			//change order
+			var orderObject=$.parseJSON(order)
+			$(orderObject).each(function(){
+				$("#sortable li[no='"+this+"']").appendTo($("#sortable"));
+				//alert(this);
+			});
+		}
 		$("#sortable").css("opacity", 1);
 	}
 
@@ -183,15 +191,15 @@ a:visted {
 		</div>
 		<div style="margin-top: 50px">
 			<ul id="sortable">
-				<li><a href="http://www.baidu.com" target="_blank"
+				<li no="1"><a href="http://www.baidu.com" target="_blank"
 					style="background: url(img/baidu.png) no-repeat 0px 2px">百 度</a></li>
-				<li><a href="http://www.google.com" target="_blank"
+				<li no="2"><a href="http://www.google.com" target="_blank"
 					style="background: url(img/google.png) no-repeat 0px 2px">谷 歌</a></li>
-				<li><a href="http://www.qq.com" target="_blank"
+				<li no="3"><a href="http://www.qq.com" target="_blank"
 					style="background: url(img/qq.png) no-repeat 0px 2px">腾 讯</a></li>
-				<li><a href="http://www.sina.com" target="_blank"
+				<li no="4"><a href="http://www.sina.com" target="_blank"
 					style="background: url(img/sina.png) no-repeat 0px 2px">新 浪</a></li>
-				<li><a href="http://www.163.com" target="_blank"
+				<li no="5"><a href="http://www.163.com" target="_blank"
 					style="background: url(img/163.png) no-repeat 0px 2px">网 易</a></li>
 				<li><a href="http://www.dianping.com" target="_blank"
 					style="background: url(img/dianping.png) no-repeat 0px 2px">大众点评</a></li>
