@@ -56,20 +56,20 @@
 		$("#sortable").css("opacity", 0);
 		var order=$.cookie('order');
 		if(order!=undefined){
-			/* var custom=	$.cookie('custom');
+			var custom=	$.cookie('custom');
 			if(custom!=undefined){
 				//add custom
-			} */
+			} 
+			
 			//change order
 			var orderObject=$.parseJSON(order)
 			$(orderObject).each(function(){
 				$("#sortable li[no='"+this+"']").appendTo($("#sortable"));
 			});
 			
-			/*//remove deleted item
+			//remove deleted item
 			var deletedCount=$("#sortable li").length-orderObject.length;
 			$("#sortable li:lt("+deletedCount+")").remove();
-			*/
 		}
 		
 		$("#sortable").css("opacity", 1);
