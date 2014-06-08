@@ -66,9 +66,10 @@
 				$("#sortable li[no='"+this+"']").appendTo($("#sortable"));
 			});
 			
-			//remove deleted item
+			/*//remove deleted item
 			var deletedCount=$("#sortable li").length-orderObject.length;
 			$("#sortable li:lt("+deletedCount+")").remove();
+			*/
 		}
 		
 		$("#sortable").css("opacity", 1);
@@ -171,7 +172,7 @@
 			<li>按空格键，可将焦点置于搜索框; 按 Ctrl+&lt;- 键，可清空搜索框</li>
 			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
 			<li>链接可拖动调换位置</li>
-			<li>看到我们连logo都省了的份上，就推荐给您的屌丝朋友吧<!-- <br />版权归<a
+			<li>看到我们连logo都省了的份上，推荐给您身边的屌丝吧<!-- <br />版权归<a
 				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有 -->
 			</li>
 		</ol>
