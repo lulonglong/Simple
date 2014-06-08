@@ -14,7 +14,7 @@
 <script src="js/jquery.cookie.js"></script>
 <script>
 	$(function() {
-		$("#sortable").sortable();
+		$("#sortable").sortable({ update: function(event, ui) {changeOrder();} });
 		$("#sortable").disableSelection();
 
 		//search baidu or google
@@ -51,17 +51,15 @@
 			$("#search").focus();
 		}
 	});
-
+	
 	function loadWebSites() {
 		$("#sortable").css("opacity", 0);
-		//$.cookie('order','[4,2,3,1,9,8,7,6,5,10,11,12,13,14,15,16,17,18,19,20,21,22]');
 		var order=$.cookie('order');
 		if(order!=undefined){
-			var custom=	$.cookie('custom');
+			/* var custom=	$.cookie('custom');
 			if(custom!=undefined){
 				//add custom
-			}
-			
+			} */
 			//change order
 			var orderObject=$.parseJSON(order)
 			$(orderObject).each(function(){
@@ -76,6 +74,14 @@
 		$("#sortable").css("opacity", 1);
 	}
 
+	function changeOrder(){
+		var order=[];
+		$("#sortable li").each(function(){
+			order.push($(this).attr("no"));
+		});
+		$.cookie('order',JSON.stringify(order));
+	}
+	
 	function loadLogo() {
 		var colorArray = [ "#45b97c", "green", "violet", "#faa755", "#6950a1",
 				"#4c4c4c", "#ef5b9c" ];
