@@ -16,7 +16,6 @@
 	$(function() {
 		$("#sortable").sortable({ update: function(event, ui) {changeOrder();} });
 		$("#sortable").disableSelection();
-
 		//search baidu or google
 		$("#search").keydown(
 				function(e) {
@@ -80,7 +79,7 @@
 		$("#sortable li").each(function(){
 			order.push($(this).attr("no"));
 		});
-		$.cookie('order',JSON.stringify(order));
+		$.cookie('order',JSON.stringify(order),{expires:1000});
 	}
 	
 	function loadLogo() {
