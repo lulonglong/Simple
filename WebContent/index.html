@@ -26,14 +26,13 @@
 					if (e.keyCode == 13) {
 						var keyword = $("#search").val();
 						if (keyword.length > 0 && keyword.charAt(0) == ' ') {
-							window.open("https://www.google.com.hk/search?q="
-									+ encodeURIComponent($("#search").val()),
-									"_blank");
+							$("#searchForm").attr("action","https://www.google.com.hk/search");
+							$("#search").attr("name","q");
 						} else {
-							window.open("http://www.baidu.com/s?wd="
-									+ encodeURIComponent($("#search").val()),
-									"_blank");
+							$("#searchForm").attr("action","http://www.baidu.com/s");
+							$("#search").attr("name","wd");
 						}
+						$("#searchForm").submit();
 					}
 				});
 	});
@@ -110,7 +109,9 @@
 		</div>
 		<div id="logo">Simple</div>
 		<div id="searchContainer">
-			<input id="search" type="text" name="word" baiduSug="2" />
+			<form id="searchForm" action="http://www.baidu.com/s" target="_blank">
+			<input id="search" type="text" name="wd" baiduSug="2" />
+			</form>
 		</div>
 		<div style="margin-top: 50px">
 			<ul id="sortable">
