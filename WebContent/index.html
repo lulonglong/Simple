@@ -18,26 +18,28 @@
 	$(function() {
 		$("#sortable").sortable({
 			stop : function(event, ui) {
-				$("#trash").css("opacity", 0);
+				$("#trashContainer").css("opacity", 0);
 			},
 			update : function(event, ui) {
 				changeOrder();
 			},
 			start : function(event, ui) {
-				$("#trash").css("opacity", 1);
+				$("#trashContainer").css("opacity", 1);
 			}
 		}).disableSelection();
-		$("#trash").droppable({
+		$("#trashContainer").droppable({
 			drop : function(event, ui) {
 				$(ui.draggable).remove();
-				$("#trash").css("background-image", "url(img/trash.png)");
+				$("#trash").css("display", "none");
+				$("#trash_tip").css("display", "block");
 			},
 			out : function(event, ui) {
-				$("#trash").css("background-image", "url(img/trash.png)");
+				$("#trash_tip").css("display", "none");
+				$("#trash").css("display", "block");
 			},
 			over : function(event, ui) {
-				$("#trash").css("background-image", "url(img/trash_tip.png)");
-				console.warn("over");
+				$("#trash").css("display", "none");
+				$("#trash_tip").css("display", "block");
 			}
 		});
 		//search baidu or google
@@ -143,7 +145,7 @@
 		</div>
 		<div id="logo">Simple</div>
 		<div id="trashContainer">
-			<div id="trash"></div>
+			<img id="trash" src="img/trash.png"/><img id="trash_tip" src="img/trash_tip.png" style="display:none"/>
 		</div>
 		<div id="searchContainer">
 			<form id="searchForm" action="http://www.baidu.com/s" target="_blank">

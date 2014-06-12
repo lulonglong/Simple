@@ -46,21 +46,12 @@ a:visted {
 	position: absolute;
 	top:100px;
 	width: 100%;
-	text-align: center
-}
-
-#trash {
-	list-style-type: none;
-	margin: 0 auto 0 auto;
-	background: url(../img/trash.png) no-repeat 0px;
-	height: 130px;
-	width: 120px;
+	text-align: center;
 	opacity:0;
-	padding:0 0 0 0;
 }
 
-#trash li{
-	padding:10px;
+#trashContainer img{
+	margin:0 auto 0 auto;
 }
 
 #head a {
