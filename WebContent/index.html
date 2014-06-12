@@ -30,8 +30,8 @@
 		$("#trashContainer").droppable({
 			drop : function(event, ui) {
 				$(ui.draggable).remove();
-				$("#trash").css("display", "none");
-				$("#trash_tip").css("display", "block");
+				$("#trash_tip").css("display", "none");
+				$("#trash").css("display", "block");
 			},
 			out : function(event, ui) {
 				$("#trash_tip").css("display", "none");
