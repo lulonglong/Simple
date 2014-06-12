@@ -1,4 +1,4 @@
 simplePage
 ==========
 
-a simple homepage
+最简洁的网址导航
