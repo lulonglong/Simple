@@ -8,14 +8,38 @@
 	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，提供最简单便捷的上网导航服务。">
 <title>Simple 最简洁的上网导航</title>
 <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
-<script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
-<script src="http://lib.sinaapp.com/js/jquery-ui/1.10.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script
+	src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<script
+	src="http://lib.sinaapp.com/js/jquery-ui/1.10.2/jquery-ui.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script>
 	$(function() {
-		$("#sortable").sortable({ update: function(event, ui) {changeOrder();} });
-		$("#sortable").disableSelection();
+		$("#sortable").sortable({
+			stop : function(event, ui) {
+				$("#trash").css("opacity", 0);
+			},
+			update : function(event, ui) {
+				changeOrder();
+			},
+			start : function(event, ui) {
+				$("#trash").css("opacity", 1);
+			}
+		}).disableSelection();
+		$("#trash").droppable({
+			drop : function(event, ui) {
+				$(ui.draggable).remove();
+				$("#trash").css("background-image", "url(img/trash.png)");
+			},
+			out : function(event, ui) {
+				$("#trash").css("background-image", "url(img/trash.png)");
+			},
+			over : function(event, ui) {
+				$("#trash").css("background-image", "url(img/trash_tip.png)");
+				console.warn("over");
+			}
+		});
 		//search baidu or google
 		$("#search").keydown(
 				function(e) {
@@ -26,11 +50,13 @@
 					if (e.keyCode == 13) {
 						var keyword = $("#search").val();
 						if (keyword.length > 0 && keyword.charAt(0) == ' ') {
-							$("#searchForm").attr("action","https://www.google.com.hk/search");
-							$("#search").attr("name","q");
+							$("#searchForm").attr("action",
+									"https://www.google.com.hk/search");
+							$("#search").attr("name", "q");
 						} else {
-							$("#searchForm").attr("action","http://www.baidu.com/s");
-							$("#search").attr("name","wd");
+							$("#searchForm").attr("action",
+									"http://www.baidu.com/s");
+							$("#search").attr("name", "wd");
 						}
 						$("#searchForm").submit();
 					}
@@ -50,38 +76,45 @@
 			$("#search").focus();
 		}
 	});
+
+	function reset(){
+		$.removeCookie("order");
+		 location.reload();
+	}
 	
 	function loadWebSites() {
 		$("#sortable").css("opacity", 0);
-		var order=$.cookie('order');
-		if(order!=undefined){
-			var custom=	$.cookie('custom');
-			if(custom!=undefined){
+		var order = $.cookie('order');
+		if (order != undefined) {
+			var custom = $.cookie('custom');
+			if (custom != undefined) {
 				//add custom
-			} 
-			
+			}
+
 			//change order
-			var orderObject=$.parseJSON(order)
-			$(orderObject).each(function(){
-				$("#sortable li[no='"+this+"']").appendTo($("#sortable"));
+			var orderObject = $.parseJSON(order)
+			$(orderObject).each(function() {
+				$("#sortable li[no='" + this + "']").appendTo($("#sortable"));
 			});
-			
+
 			//remove deleted item
-			var deletedCount=$("#sortable li").length-orderObject.length;
-			$("#sortable li:lt("+deletedCount+")").remove();
+			var deletedCount = $("#sortable li").length - orderObject.length;
+			$("#sortable li:lt(" + deletedCount + ")").remove();
 		}
-		
+
 		$("#sortable").css("opacity", 1);
 	}
 
-	function changeOrder(){
-		var order=[];
-		$("#sortable li").each(function(){
+	function changeOrder() {
+		var order = [];
+		$("#sortable li").each(function() {
 			order.push($(this).attr("no"));
 		});
-		$.cookie('order',JSON.stringify(order),{expires:1000});
+		$.cookie('order', JSON.stringify(order), {
+			expires : 1000
+		});
 	}
-	
+
 	function loadLogo() {
 		var colorArray = [ "#45b97c", "green", "violet", "#faa755", "#6950a1",
 				"#4c4c4c", "#ef5b9c" ];
@@ -106,46 +139,61 @@
 <body>
 	<div>
 		<div id="head">
-			<a href="#" onclick="showAbout()">帮助</a>
+			<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a> 
 		</div>
 		<div id="logo">Simple</div>
+		<div id="trashContainer">
+			<div id="trash"></div>
+		</div>
 		<div id="searchContainer">
 			<form id="searchForm" action="http://www.baidu.com/s" target="_blank">
-			<input id="search" type="text" name="wd" baiduSug="2" />
+				<input id="search" type="text" name="wd" baiduSug="2" />
 			</form>
 		</div>
 		<div style="margin-top: 50px">
-			<ul id="sortable">
+			<ul id="sortable" class="connectedSortable">
 				<li no="1"><a href="http://www.baidu.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px 0px">百 度</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px 0px">百
+						度</a></li>
 				<li no="2"><a href="http://www.google.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -32px">谷 歌</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -32px">谷
+						歌</a></li>
 				<li no="3"><a href="http://www.qq.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -64px">腾 讯</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -64px">腾
+						讯</a></li>
 				<li no="4"><a href="http://www.sina.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -96px">新 浪</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -96px">新
+						浪</a></li>
 				<li no="5"><a href="http://www.163.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -128px">网 易</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -128px">网
+						易</a></li>
 				<li no="6"><a href="http://www.dianping.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -160px">大众点评</a></li>
 				<li no="7"><a href="http://www.jd.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -192px">京 东</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -192px">京
+						东</a></li>
 				<li no="8"><a href="http://www.yixun.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -224px">1号店</a></li>
 				<li no="9"><a href="http://www.tmall.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -256px">天 猫</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -256px">天
+						猫</a></li>
 				<li no="10"><a href="http://www.taobao.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -288px">淘 宝</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -288px">淘
+						宝</a></li>
 				<li no="11"><a href="http://www.alipay.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -320px">支付宝</a></li>
 				<li no="12"><a href="http://www.meituan.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -352px">美 团</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -352px">美
+						团</a></li>
 				<li no="13"><a href="http://www.douban.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -384px">豆 瓣</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -384px">豆
+						瓣</a></li>
 				<li no="14"><a href="http://www.zhihu.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -416px">知 乎</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -416px">知
+						乎</a></li>
 				<li no="15"><a href="http://www.youku.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -448px">优 酷</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -448px">优
+						酷</a></li>
 				<li no="16"><a href="http://www.iqiyi.com/" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -480px">爱奇艺</a></li>
 				<li no="17"><a href="http://www.12306.cn" target="_blank"
@@ -155,13 +203,15 @@
 				<li no="19"><a href="http://www.renren.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -576px">人人网</a></li>
 				<li no="20"><a href="http://www.weibo.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -608px">微 博</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -608px">微
+						博</a></li>
 				<li no="21"><a href="http://www.58.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -640px">58同城</a></li>
 				<li no="22"><a href="http://www.anjuke.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -672px">安居客</a></li>
 				<li no="23"><a href="http://www.soufang.com" target="_blank"
-					style="background: url(img/defaultIcon.png) no-repeat 0px -704px">搜 房</a></li>
+					style="background: url(img/defaultIcon.png) no-repeat 0px -704px">搜
+						房</a></li>
 			</ul>
 		</div>
 		<div id="footer">
@@ -170,9 +220,10 @@
 	</div>
 	<div id="about">
 		<ol>
-			<li>按空格键，可将焦点置于搜索框; 按 Ctrl+&lt;- 键，可清空搜索框</li>
-			<li>默认搜索为百度，搜索框内关键词前空一格则使用google搜索</li>
-			<li>网址可拖动调换位置</li>
+			<li>按空格键，可将焦点置于搜索框内; 按 Ctrl+&lt;- 键，可清空搜索框</li>
+			<li>默认搜索为百度，关键词前空一格则使用google搜索</li>
+			<li>网址可拖动调换位置并随意删除</li>
+			<li>点击重置可恢复到最最原始的页面</li>
 			<li>看在我们连logo都省了的份上，推荐给身边的屌丝们吧<!-- <br />版权归<a
 				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有 -->
 			</li>
