@@ -1,11 +1,9 @@
-<html class="" lang="zh-cn">
-<!--<![endif]-->
+<html lang="zh-cn">
 <head>
 <meta charset="utf-8">
-<!--[if IE 6 ]></base><![endif]-->
 
 <style type="text/css">
-body,ul{
+body,ul {
 	margin: 0;
 	padding: 0
 }
@@ -15,28 +13,22 @@ ul {
 }
 
 #mysite {
-	z-index: 420;
-	position: absolute;
-	top: 189px;
-	border: solid 1px #a1a1a1;
-	left: 50%;
-	margin-left: -500px;
+	text-align: center;
+	margin: 0 auto 0 auto;
 	width: 998px;
-	background: #f4f4f4;
-	position: relative;
-	height: auto !important;
-	min-height: 400px;
-	height: 400px
-	
+	background: #fff;
+}
+
+#mysite .mysite-add {
+	width: 800px;
+	margin: 100 auto 0 auto;
 }
 
 #mysite .mysite-add .txt {
 	float: left;
-	margin-left: 20px;
 	line-height: 30px;
 	font-size: 14px
 }
-
 
 #mysite .mysite-add .site-input {
 	float: left;
@@ -62,7 +54,6 @@ ul {
 	-webkit-appearance: none
 }
 
-
 #mysite .mysite-add .site-url {
 	width: 225px
 }
@@ -80,8 +71,6 @@ ul {
 }
 
 #btn-site-add {
-	float: left;
-	margin-left: 30px;
 	width: 70px;
 	height: 28px;
 	text-align: center;
@@ -90,18 +79,6 @@ ul {
 	font-size: 14px;
 	background-color: #47b902;
 	color: #fff
-}
-
-#mysite   ul {
-	margin-left: 15px;
-	margin-bottom: 13px
-}
-
-#mysite   li {
-	margin: 9px 38px 0 0;
-	float: left;
-	width: 106px;
-	height: 20px
 }
 
 .mysite-suggest {
@@ -141,55 +118,37 @@ ul {
 .mysite-suggest .hover {
 	background-color: #f2f8ff
 }
-
-.mask-panel{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: .3;
-	filter: alpha(opacity = 30);
-	z-index: 400;
-	background-color: #666
-}
 </style>
 </head>
 <body class="standard">
-	111
-		<div id="mysite" class="">
-			<div class="mysite-add gclearfix">
-				<div class="form">
-						<div class="txt">网站名称：</div>
-						<div class="site-input site-name">
-							<input type="text" name="sitename" id="mysite-name-add"
-								placeholder="如：Simple" autocomplete="off" qsuginited="1">
-						</div>
-						<div class="txt txt-url">网址：</div>
-						<div class="site-input site-url">
-
-							<input type="text" name="siteurl" id="mysite-url-add"
-								placeholder="如：www.haosimple.com" autocomplete="off"
-								qsuginited="1">
-						</div>
-						<button id="btn-site-add" type="submit">添加</button>
+	<div id="mysite" class="">
+		<div class="mysite-add gclearfix">
+			<div class="form">
+				<div class="txt">网站名称：</div>
+				<div class="site-input site-name">
+					<input type="text" name="sitename" id="mysite-name-add"
+						placeholder="如：Simple" autocomplete="off" />
 				</div>
+				<div class="txt txt-url">网址：</div>
+				<div class="site-input site-url">
+
+					<input type="text" name="siteurl" id="mysite-url-add"
+						placeholder="如：www.haosimple.com" autocomplete="off" />
+				</div>
+				<button id="btn-site-add" type="submit">添加</button>
 			</div>
 		</div>
-		<div class="mask-panel"></div>
-		<div>
-			<ul class="mysite-suggest" id="mysite-name-suggest"
-				style="position: absolute; top: 250px; left: 481px; width: 499px; z-index: 430; visibility: visibility;"
-				width="499">
-				<li class="hover"><div class="sug-name" data-text="叮当动漫">叮当动漫</div>
-					<div class="sug-url" data-text="www.kt51.com">www.kt51.com</div></li>
-				<li><div class="sug-name" data-text="当当电器城">当当电器城</div>
-					<div class="sug-url" data-text="3c.dangdang.com">3c.dangdang.com</div></li>
-				<li><div class="sug-name" data-text="岛多多">岛多多</div>
-					<div class="sug-url" data-text="www.daododo.com">www.daododo.com</div></li>
-				<li><div class="sug-name" data-text="大家说网调地带">大家说网调地带</div>
-					<div class="sug-url" data-text="www.dajiashuo.com">www.dajiashuo.com</div></li>
-			</ul>
-		</div>
+	</div>
+	<ul class="mysite-suggest" id="mysite-name-suggest"
+		style="top: 200px; left: 200px; width: 499px;">
+		<li class="hover"><div class="sug-name" data-text="叮当动漫">叮当动漫</div>
+			<div class="sug-url" data-text="www.kt51.com">www.kt51.com</div></li>
+		<li><div class="sug-name" data-text="当当电器城">当当电器城</div>
+			<div class="sug-url" data-text="3c.dangdang.com">3c.dangdang.com</div></li>
+		<li><div class="sug-name" data-text="岛多多">岛多多</div>
+			<div class="sug-url" data-text="www.daododo.com">www.daododo.com</div></li>
+		<li><div class="sug-name" data-text="大家说网调地带">大家说网调地带</div>
+			<div class="sug-url" data-text="www.dajiashuo.com">www.dajiashuo.com</div></li>
+	</ul>
 </body>
 </html>
