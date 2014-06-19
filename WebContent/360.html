@@ -1,6 +1,9 @@
 <html lang="zh-cn">
 <head>
 <meta charset="utf-8">
+<script
+	src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" language="javascript" charset="gb2312" src="js/autopromot.js"></script>
 
 <style type="text/css">
 body,ul {
@@ -14,23 +17,19 @@ ul {
 
 #mysite {
 	text-align: center;
-	margin: 0 auto 0 auto;
-	width: 998px;
+	margin: 200 auto 0 auto;
+	width: 800px;
 	background: #fff;
 }
 
-#mysite .mysite-add {
-	width: 800px;
-	margin: 100 auto 0 auto;
-}
 
-#mysite .mysite-add .txt {
+#mysite .txt {
 	float: left;
 	line-height: 30px;
 	font-size: 14px
 }
 
-#mysite .mysite-add .site-input {
+#mysite .site-input {
 	float: left;
 	position: relative;
 	height: 26px;
@@ -41,7 +40,7 @@ ul {
 	margin-right: 20px
 }
 
-#mysite .mysite-add .site-input input {
+#mysite .site-input input {
 	margin-top: 2px;
 	padding: 0 6px;
 	height: 22px;
@@ -54,19 +53,19 @@ ul {
 	-webkit-appearance: none
 }
 
-#mysite .mysite-add .site-url {
+#mysite  .site-url {
 	width: 225px
 }
 
-#mysite .mysite-add .site-url input {
+#mysite .site-url input {
 	width: 213px
 }
 
-#mysite .mysite-add .site-name {
+#mysite  .site-name {
 	width: 210px
 }
 
-#mysite .mysite-add .site-name input {
+#mysite  .site-name input {
 	width: 198px
 }
 
@@ -121,25 +120,20 @@ ul {
 </style>
 </head>
 <body class="standard">
-	<div id="mysite" class="">
-		<div class="mysite-add gclearfix">
-			<div class="form">
+	<div id="mysite">
 				<div class="txt">网站名称：</div>
 				<div class="site-input site-name">
-					<input type="text" name="sitename" id="mysite-name-add"
+					<input type="text" id="mysite-name-add"
 						placeholder="如：Simple" autocomplete="off" />
 				</div>
 				<div class="txt txt-url">网址：</div>
 				<div class="site-input site-url">
-
-					<input type="text" name="siteurl" id="mysite-url-add"
+					<input type="text"  id="mysite-url-add"
 						placeholder="如：www.haosimple.com" autocomplete="off" />
 				</div>
 				<button id="btn-site-add" type="submit">添加</button>
-			</div>
-		</div>
 	</div>
-	<ul class="mysite-suggest" id="mysite-name-suggest"
+	<!--  <ul class="mysite-suggest" id="mysite-name-suggest"
 		style="top: 200px; left: 200px; width: 499px;">
 		<li class="hover"><div class="sug-name" data-text="叮当动漫">叮当动漫</div>
 			<div class="sug-url" data-text="www.kt51.com">www.kt51.com</div></li>
@@ -149,6 +143,6 @@ ul {
 			<div class="sug-url" data-text="www.daododo.com">www.daododo.com</div></li>
 		<li><div class="sug-name" data-text="大家说网调地带">大家说网调地带</div>
 			<div class="sug-url" data-text="www.dajiashuo.com">www.dajiashuo.com</div></li>
-	</ul>
+	</ul>  -->
 </body>
 </html>
