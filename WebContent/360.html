@@ -3,8 +3,20 @@
 <meta charset="utf-8">
 <script
 	src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" language="javascript" charset="gb2312" src="js/autopromot.js"></script>
-
+<script type="text/javascript" charset="gb2312" src="js/autopromot.js"></script>
+<script>
+	function add() {
+		alert($("#mysite-name-add").val() + ':' + $("#mysite-url-add").val()
+				+ '添加成功');
+	}
+	$(document)
+	.ready(function(){
+	$("#mysite-name-add,#mysite-url-add").keydown(function(e) {
+		// 回车键
+		if (e.keyCode == 13)
+			add();
+	});});
+</script>
 <style type="text/css">
 body,ul {
 	margin: 0;
@@ -21,7 +33,6 @@ ul {
 	width: 800px;
 	background: #fff;
 }
-
 
 #mysite .txt {
 	float: left;
@@ -42,7 +53,6 @@ ul {
 
 #mysite .site-input input {
 	margin-top: 2px;
-	padding: 0 6px;
 	height: 22px;
 	line-height: 22px;
 	font-size: 14px;
@@ -79,33 +89,20 @@ ul {
 	background-color: #47b902;
 	color: #fff
 }
-
 </style>
 </head>
-<body class="standard">
+<body>
 	<div id="mysite">
-				<div class="txt">网站名称：</div>
-				<div class="site-input site-name">
-					<input type="text" id="mysite-name-add"
-						placeholder="如：Simple" autocomplete="off" />
-				</div>
-				<div class="txt txt-url">网址：</div>
-				<div class="site-input site-url">
-					<input type="text"  id="mysite-url-add"
-						placeholder="如：www.haosimple.com" autocomplete="off" />
-				</div>
-				<button id="btn-site-add" type="submit">添加</button>
+		<div class="txt">网站名称：</div>
+		<div class="site-input site-name">
+			<input type="text" id="mysite-name-add" placeholder="如：Simple" />
+		</div>
+		<div class="txt txt-url">网址：</div>
+		<div class="site-input site-url">
+			<input type="text" id="mysite-url-add"
+				placeholder="如：www.haosimple.com" />
+		</div>
+		<button onclick="add()" id="btn-site-add" type="submit">添加</button>
 	</div>
-	<!--  <ul class="mysite-suggest" id="mysite-name-suggest"
-		style="top: 200px; left: 200px; width: 499px;">
-		<li class="hover"><div class="sug-name" data-text="叮当动漫">叮当动漫</div>
-			<div class="sug-url" data-text="www.kt51.com">www.kt51.com</div></li>
-		<li><div class="sug-name" data-text="当当电器城">当当电器城</div>
-			<div class="sug-url" data-text="3c.dangdang.com">3c.dangdang.com</div></li>
-		<li><div class="sug-name" data-text="岛多多">岛多多</div>
-			<div class="sug-url" data-text="www.daododo.com">www.daododo.com</div></li>
-		<li><div class="sug-name" data-text="大家说网调地带">大家说网调地带</div>
-			<div class="sug-url" data-text="www.dajiashuo.com">www.dajiashuo.com</div></li>
-	</ul>  -->
 </body>
 </html>
