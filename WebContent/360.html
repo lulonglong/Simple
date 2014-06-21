@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <script
 	src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" charset="gb2312" src="js/autopromot.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://haosimple.sinaapp.com/js/autopromot.js"></script>
 <script>
 	function add() {
 		alert($("#mysite-name-add").val() + ':' + $("#mysite-url-add").val()
@@ -13,8 +13,10 @@
 	.ready(function(){
 	$("#mysite-name-add,#mysite-url-add").keydown(function(e) {
 		// 回车键
-		if (e.keyCode == 13)
-			add();
+		if (e.keyCode == 13){
+			$("#mysite-name-add,#mysite-url-add").blur();
+			$("#btn-site-add").click();
+		}
 	});});
 </script>
 <style type="text/css">
@@ -102,7 +104,7 @@ ul {
 			<input type="text" id="mysite-url-add"
 				placeholder="如：www.haosimple.com" />
 		</div>
-		<button onclick="add()" id="btn-site-add" type="submit">添加</button>
+		<button onclick="add()" id="btn-site-add" >添加</button>
 	</div>
 </body>
 </html>
