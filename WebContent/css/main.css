@@ -99,3 +99,67 @@ a:visted {
 	clear: both;
 	bottom: 0px;
 }
+
+/* add div */
+#mysite {
+	text-align: center;
+	margin: 200px auto 0 auto;
+	width: 800px;
+	background: #fff;
+}
+
+#mysite .txt {
+	float: left;
+	line-height: 30px;
+	font-size: 14px
+}
+
+#mysite .site-input {
+	float: left;
+	position: relative;
+	height: 26px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #3faf0f;
+	background: #fff;
+	margin-right: 20px
+}
+
+#mysite .site-input input {
+	margin-top: 2px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 14px;
+	font-family: arial;
+	border: 0;
+	background: 0;
+	outline: 0;
+	-webkit-appearance: none
+}
+
+#mysite  .site-url {
+	width: 225px
+}
+
+#mysite .site-url input {
+	width: 213px
+}
+
+#mysite  .site-name {
+	width: 210px
+}
+
+#mysite  .site-name input {
+	width: 198px
+}
+
+#btn-site-add {
+	width: 70px;
+	height: 28px;
+	text-align: center;
+	border: 0;
+	cursor: pointer;
+	font-size: 14px;
+	background-color: #47b902;
+	color: #fff
+}

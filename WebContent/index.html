@@ -141,7 +141,7 @@
 <body>
 	<div>
 		<div id="head">
-			<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a> <a href="#" onclick="alert('即将上线')">添加</a>
+			<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a> <a href="#" onclick="$('#addContainer').show()">添加</a>
 		</div>
 		<div id="logo">Simple</div>
 		<div id="trashContainer">
@@ -232,6 +232,21 @@
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
+	</div>
+	<div id="addContainer" style="position:absolute;width:100%;height:auto;top:0px;display:none;z-index:100">
+	<div id="mysite">
+		<div class="txt">网站名称：</div>
+		<div class="site-input site-name">
+			<input type="text" id="mysite-name-add" placeholder="如：Simple" />
+		</div>
+		<div class="txt txt-url">网址：</div>
+		<div class="site-input site-url">
+			<input type="text" id="mysite-url-add"
+				placeholder="如：www.haosimple.com" />
+		</div>
+		<button onclick="add()" id="btn-site-add" >添加</button>
+	</div>
+	<div style="top:0px;position:fixed;background-color:#666;opacity:0.3;width:100%;height:100%;z-index:10"></div>
 	</div>
 </body>
 <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
