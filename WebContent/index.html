@@ -82,6 +82,7 @@
 
 	function reset() {
 		$.removeCookie("order");
+		$.removeCookie("custom");
 		location.reload();
 	}
 
@@ -92,6 +93,7 @@
 			var custom = $.cookie('custom');
 			if (custom != undefined) {
 				//add custom
+				//alert($.parseJSON(custom).length);
 			}
 
 			//change order
@@ -108,6 +110,7 @@
 		$("#sortable").css("opacity", 1);
 	}
 
+	//保存网址顺序
 	function changeOrder() {
 		var order = [];
 		$("#sortable li").each(function() {
@@ -116,6 +119,32 @@
 		$.cookie('order', JSON.stringify(order), {
 			expires : 1000
 		});
+	}
+
+	//将新网址添加到网址列表
+	function appendSite(no, name, url) {
+		$("#sortable")
+				.append(
+						'<li no="'+no+'"><a href="http://'
+								+ url
+								+ '" target="_blank" style="background: url(http://cdn.website.h.qhimg.com/index.php?domain='
+								+ url
+								+ ') no-repeat 0px;-webkit-background-size:16px 16px;-o-background-size:16px 16px;background-size:16px 16px;">'
+								+ name + '</a></li>');
+	}
+
+	//获取添加网址中的最大编号
+	function getCustomMaxNo() {
+		var defaultCustomNo = 10000;
+		var custom = $.cookie('custom');
+		if (custom == undefined)
+			return defaultCustomNo;
+
+		$($.parseJSON(custom)).each(function() {
+			if ($(this).no > defaultCustomNo)
+				defaultCustomNo = $(this).no;
+		});
+		return defaultCustomNo;
 	}
 
 	function loadLogo() {
@@ -229,16 +258,17 @@
 			<li>默认搜索为百度，关键词前空一格则使用google搜索</li>
 			<li>网址可拖动调换位置并随意删除</li>
 			<li>点击重置可恢复到最最原始的页面</li>
+			<li>点击添加可自由添加您喜欢的网址</li>
 			<li>看在我们连logo都省了的份上，推荐给身边的屌丝们吧<!-- <br />版权归<a
 				href="http://www.cnblogs.com/luguo3000/">屌丝逆袭</a>所有 -->
 			</li>
+			<li>期待您的任何建议： btoprunner@126.com</li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
 	</div>
 	<div id="addContainer">
 		<div class="mask"></div>
-
 		<div id="mysite">
 			<div class="txt">网站名称：</div>
 			<div class="site-input site-name">
@@ -257,6 +287,8 @@
 </body>
 <script>
 	var promotLoaded = false;
+	
+	//显示添加框
 	function showAdd() {
 		$('#addContainer').show();
 		if (!promotLoaded) {
@@ -266,15 +298,42 @@
 							'<script type="text/javascript" charset="utf-8" src="js/autopromot.js"/>');
 		}
 	}
+
+	//添加方法
 	function add() {
-		if ($("#mysite-name-add").val().trim() == ''
-				|| $("#mysite-url-add").val().trim() == '') {
+		var name = $("#mysite-name-add").val().trim();
+		var url = $("#mysite-url-add").val().trim();
+		if (name == '' || url == '') {
 			alert("添加内容不能为空");
 			return;
 		}
-		alert($("#mysite-name-add").val() + ':' + $("#mysite-url-add").val()
-				+ '添加成功');
+		
+		if(name.length==2)
+			name=name[0]+' '+name[1];
+		
+		var currentNo = getCustomMaxNo() + 1;
+		var customArray;
+		var custom = $.cookie('custom');
+		if (custom == undefined)
+			customArray = [];
+		else
+			customArray = $.parseJSON(custom);
+
+		customArray.push({
+			"name" : name,
+			"url" : url,
+			no : currentNo
+		});
+		//save to cookie
+		$.cookie('custom', JSON.stringify(customArray), {
+			expires : 1000
+		});
+		
+		appendSite(currentNo,name,url);
+		alert(name+" 添加成功")
 	}
+
+	//响应回车事件
 	$(document).ready(function() {
 		$("#mysite-name-add,#mysite-url-add").keydown(function(e) {
 			// 回车键
