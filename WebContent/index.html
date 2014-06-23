@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="keywords"
-	content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,好简单导航,好simple导航">
+	content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,好简单导航,haosimple导航">
 <meta name="description"
 	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，提供最简单便捷的上网导航服务。">
 <title>Simple 最简洁的上网导航</title>
@@ -61,6 +61,7 @@
 							$("#search").attr("name", "wd");
 						}
 						$("#searchForm").submit();
+						return false;
 					}
 				});
 	});
@@ -74,16 +75,16 @@
 
 	//focus search action，when key space
 	$(document).keyup(function(e) {
-		if (e.keyCode == 32 && document.activeElement.id!="search") {
+		if (e.keyCode == 32 && document.activeElement.id != "search") {
 			$("#search").focus();
 		}
 	});
 
-	function reset(){
+	function reset() {
 		$.removeCookie("order");
-		 location.reload();
+		location.reload();
 	}
-	
+
 	function loadWebSites() {
 		$("#sortable").css("opacity", 0);
 		var order = $.cookie('order');
@@ -141,11 +142,13 @@
 <body>
 	<div>
 		<div id="head">
-			<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a> <a href="#" onclick="$('#addContainer').show()">添加</a>
+			<a href="#" onclick="showAbout()">帮助</a> <a href="#"
+				onclick="reset()">重置</a> <a href="#" onclick="showAdd()">添加</a>
 		</div>
 		<div id="logo">Simple</div>
 		<div id="trashContainer">
-			<img id="trash" src="img/trash.png"/><img id="trash_tip" src="img/trash_tip.png" style="display:none"/>
+			<img id="trash" src="img/trash.png" /><img id="trash_tip"
+				src="img/trash_tip.png" style="display: none" />
 		</div>
 		<div id="searchContainer">
 			<form id="searchForm" action="http://www.baidu.com/s" target="_blank">
@@ -233,21 +236,54 @@
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
 	</div>
-	<div id="addContainer" style="position:absolute;width:100%;height:auto;top:0px;display:none;z-index:100">
-	<div id="mysite">
-		<div class="txt">网站名称：</div>
-		<div class="site-input site-name">
-			<input type="text" id="mysite-name-add" placeholder="如：Simple" />
+	<div id="addContainer">
+		<div class="mask"></div>
+
+		<div id="mysite">
+			<div class="txt">网站名称：</div>
+			<div class="site-input site-name">
+				<input type="text" id="mysite-name-add" placeholder="如：Simple" />
+			</div>
+			<div class="txt txt-url">网址：</div>
+			<div class="site-input site-url">
+				<input type="text" id="mysite-url-add"
+					placeholder="如：www.haosimple.com" />
+			</div>
+			<button onclick="add()" id="btn-site-add">添加</button>
+			<img class="close" onclick="$('#addContainer').hide();"
+				src="img/close.png" />
 		</div>
-		<div class="txt txt-url">网址：</div>
-		<div class="site-input site-url">
-			<input type="text" id="mysite-url-add"
-				placeholder="如：www.haosimple.com" />
-		</div>
-		<button onclick="add()" id="btn-site-add" >添加</button>
-	</div>
-	<div style="top:0px;position:fixed;background-color:#666;opacity:0.3;width:100%;height:100%;z-index:10"></div>
 	</div>
 </body>
+<script>
+	var promotLoaded = false;
+	function showAdd() {
+		$('#addContainer').show();
+		if (!promotLoaded) {
+			promotLoaded = true;
+			$(document.body)
+					.append(
+							'<script type="text/javascript" charset="utf-8" src="js/autopromot.js"/>');
+		}
+	}
+	function add() {
+		if ($("#mysite-name-add").val().trim() == ''
+				|| $("#mysite-url-add").val().trim() == '') {
+			alert("添加内容不能为空");
+			return;
+		}
+		alert($("#mysite-name-add").val() + ':' + $("#mysite-url-add").val()
+				+ '添加成功');
+	}
+	$(document).ready(function() {
+		$("#mysite-name-add,#mysite-url-add").keydown(function(e) {
+			// 回车键
+			if (e.keyCode == 13) {
+				$("#mysite-name-add,#mysite-url-add").blur();
+				$("#btn-site-add").click();
+			}
+		});
+	});
+</script>
 <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
 </html>

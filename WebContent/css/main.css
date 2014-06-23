@@ -19,7 +19,7 @@ a:visted {
 	list-style-type: none;
 	margin-right: auto;
 	margin-left: auto;
-	padding-bottom:2.5em;
+	padding-bottom: 2.5em;
 	padding-left: 50px;
 	width: 60%;
 	height: auto;
@@ -44,14 +44,14 @@ a:visted {
 
 #trashContainer {
 	position: absolute;
-	top:100px;
+	top: 100px;
 	width: 100%;
 	text-align: center;
-	opacity:0;
+	opacity: 0;
 }
 
-#trashContainer img{
-	margin:0 auto 0 auto;
+#trashContainer img {
+	margin: 0 auto 0 auto;
 }
 
 #head a {
@@ -101,12 +101,39 @@ a:visted {
 }
 
 /* add div */
+#addContainer {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	top: 0px;
+	display: none;
+}
+
+.mask {
+	top: 0px;
+	position: fixed;
+	background-color: #666;
+	opacity: 0.3;
+	width: 100%;
+	height: 100%;
+	z-index: -10;
+}
+
 #mysite {
 	text-align: center;
 	margin: 200px auto 0 auto;
 	width: 800px;
 	background: #fff;
-	padding:50px 0px 400px 30px;
+	padding: 50px 0px 400px 30px;
+}
+
+#mysite .close {
+	cursor: pointer;
+	position: relative;
+	display: block;
+	float: right;
+	top: -40px;
+	right: 10px
 }
 
 #mysite .txt {
