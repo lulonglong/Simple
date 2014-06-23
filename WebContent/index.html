@@ -21,6 +21,7 @@
 				$("#trashContainer").css("opacity", 0);
 			},
 			update : function(event, ui) {
+				//注意删除custom
 				changeOrder();
 			},
 			start : function(event, ui) {
@@ -87,7 +88,7 @@
 	}
 
 	function loadWebSites() {
-		$("#sortable").css("opacity", 0);
+		//$("#sortable").css("opacity", 0);
 		var order = $.cookie('order');
 		if (order != undefined) {
 			var custom = $.cookie('custom');
@@ -105,11 +106,12 @@
 			});
 
 			//remove deleted item
+			//注意删除custom时
 			var deletedCount =$("#sortable li").length - orderObject.length;
 			$("#sortable li:lt(" + deletedCount + ")").remove();
 		}
 
-		$("#sortable").css("opacity", 1);
+		//$("#sortable").css("opacity", 1);
 	}
 
 	//保存网址顺序
