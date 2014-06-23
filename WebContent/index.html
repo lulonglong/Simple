@@ -93,7 +93,9 @@
 			var custom = $.cookie('custom');
 			if (custom != undefined) {
 				//add custom
-				//alert($.parseJSON(custom).length);
+				$($.parseJSON(custom)).each(function(){
+					appendSite(this.no,this.name,this.url);
+				});
 			}
 
 			//change order
@@ -103,7 +105,7 @@
 			});
 
 			//remove deleted item
-			var deletedCount = $("#sortable li").length - orderObject.length;
+			var deletedCount =$("#sortable li").length - orderObject.length;
 			$("#sortable li:lt(" + deletedCount + ")").remove();
 		}
 
@@ -311,14 +313,14 @@
 		if(name.length==2)
 			name=name[0]+' '+name[1];
 		
-		var currentNo = getCustomMaxNo() + 1;
 		var customArray;
 		var custom = $.cookie('custom');
 		if (custom == undefined)
 			customArray = [];
 		else
 			customArray = $.parseJSON(custom);
-
+		
+		var currentNo = getCustomMaxNo() + 1;
 		customArray.push({
 			"name" : name,
 			"url" : url,
@@ -330,6 +332,7 @@
 		});
 		
 		appendSite(currentNo,name,url);
+		changeOrder();
 		alert(name+" 添加成功")
 	}
 
