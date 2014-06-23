@@ -33,7 +33,7 @@ function generateSiteList(data) {
 function applyCSSAndEvent() {
 	$(document.body)
 			.append(
-					'<style type="text/css">.mysite-suggest{list-style:none;margin:0;padding:0;display:none;position:absolute;border:1px solid #707a86;background-color:#fff}.mysite-suggest li{overflow:hidden;height:30px;cursor:pointer}.mysite-suggest .sug-url,.mysite-suggest .sug-name{display:inline;overflow:hidden;float:left;padding-left:6px;font-size:14px;height:30px;line-height:30px;text-overflow:ellipsis;white-space:nowrap}.mysite-suggest .sug-url{width:210px}.mysite-suggest .sug-name{margin-right:80px;width:188px}.mysite-suggest .hover{background-color:#f2f8ff}</style>');
+					'<style type="text/css">.mysite-suggest{text-align:left;list-style:none;margin:0;padding:0;display:none;position:absolute;border:1px solid #707a86;background-color:#fff}.mysite-suggest li{overflow:hidden;height:30px;cursor:pointer}.mysite-suggest .sug-url,.mysite-suggest .sug-name{display:inline;overflow:hidden;float:left;padding-left:6px;font-size:14px;height:30px;line-height:30px;text-overflow:ellipsis;white-space:nowrap}.mysite-suggest .sug-url{width:210px}.mysite-suggest .sug-name{margin-right:80px;width:188px}.mysite-suggest .hover{background-color:#f2f8ff}</style>');
 
 	$(document).on("mouseover", ".mysite-suggest li", function() {
 		changeHoverClass(this);
