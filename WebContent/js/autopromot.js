@@ -108,40 +108,6 @@ $(document)
 
 										var e = event || window.event;
 										var keyCode = e.keyCode;
-										// 数字字母退格删除空格
-										if (keyCode >= 48
-												&& keyCode <= 57
-												|| (keyCode >= 65 && keyCode <= 90)
-												|| keyCode == 8
-												|| keyCode == 46
-												|| keyCode == 32) {
-
-											// 获得搜索地址和搜索内容
-											var word;
-											var sugApiUrl;
-											if ("mysite-name-add" == document.activeElement.id) {
-												word = $("#mysite-name-add")
-														.val();
-												sugApiUrl = "http://suggest.h.qhimg.com/index.php?biz=websitename&fmt=jsonp&word=";
-											} else {
-												word = $("#mysite-url-add")
-														.val();
-												sugApiUrl = "http://suggest.h.qhimg.com/index.php?biz=websiteurl&fmt=jsonp&word=";
-											}
-
-											// 没有内容就没必要搜索了
-											if (word.trim() == "") {
-												clearSug();
-												return;
-											}
-
-											// 400毫秒后进行搜索，400毫秒未到又触发了下次，本次搜索会被取消
-											ajaxDelay = window.setTimeout(
-													'getSite("' + word + '","'
-															+ sugApiUrl + '")',
-													400);
-											return;
-										}
 
 										// 获得提示框中的项
 										var sitelis = $(sugContainer).children(
@@ -155,6 +121,7 @@ $(document)
 											}
 											setContent($(sitelis)[hoverIndex]);
 											changeHoverClass($(sitelis)[hoverIndex]);
+											return;
 										}
 										// 响应向下键
 										if (keyCode == 40 && sitelis.length > 0) {
@@ -165,6 +132,40 @@ $(document)
 											}
 											setContent($(sitelis)[hoverIndex]);
 											changeHoverClass($(sitelis)[hoverIndex]);
+											return;
 										}
+
+										// 数字字母退格删除空格
+										// if (keyCode >= 48
+										// && keyCode <= 57
+										// || (keyCode >= 65 && keyCode <= 90)
+										// || keyCode == 8
+										// || keyCode == 46
+										// || keyCode == 32) {
+
+										// 获得搜索地址和搜索内容
+										var word;
+										var sugApiUrl;
+										if ("mysite-name-add" == document.activeElement.id) {
+											word = $("#mysite-name-add").val();
+											sugApiUrl = "http://suggest.h.qhimg.com/index.php?biz=websitename&fmt=jsonp&word=";
+										} else {
+											word = $("#mysite-url-add").val();
+											sugApiUrl = "http://suggest.h.qhimg.com/index.php?biz=websiteurl&fmt=jsonp&word=";
+										}
+
+										// 没有内容就没必要搜索了
+										if (word.trim() == "") {
+											clearSug();
+											return;
+										}
+
+										// 400毫秒后进行搜索，400毫秒未到又触发了下次，本次搜索会被取消
+										ajaxDelay = window
+												.setTimeout('getSite("' + word
+														+ '","' + sugApiUrl
+														+ '")', 400);
+										return false;//防止监听到空格按键，聚焦到搜索框
+										// }
 									});
 				});
