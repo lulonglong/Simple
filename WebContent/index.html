@@ -15,13 +15,17 @@
 	src="http://lib.sinaapp.com/js/jquery-ui/1.10.2/jquery-ui.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script>
+	/** trim() method for String */
+	String.prototype.trim = function() {
+		return this.replace(/(^\s*)|(\s*$)/g, '');
+	};
+
 	$(function() {
 		$("#sortable").sortable({
 			stop : function(event, ui) {
 				$("#trashContainer").css("opacity", 0);
 			},
 			update : function(event, ui) {
-				//注意删除custom
 				changeOrder();
 			},
 			start : function(event, ui) {
@@ -31,6 +35,8 @@
 		$("#trashContainer").droppable({
 			drop : function(event, ui) {
 				$(ui.draggable).remove();
+				//注意删除custom
+				
 				$("#trash_tip").css("display", "none");
 				$("#trash").css("display", "block");
 			},
@@ -94,8 +100,8 @@
 			var custom = $.cookie('custom');
 			if (custom != undefined) {
 				//add custom
-				$($.parseJSON(custom)).each(function(){
-					appendSite(this.no,this.name,this.url);
+				$($.parseJSON(custom)).each(function() {
+					appendSite(this.no, this.name, this.url);
 				});
 			}
 
@@ -106,8 +112,7 @@
 			});
 
 			//remove deleted item
-			//注意删除custom时
-			var deletedCount =$("#sortable li").length - orderObject.length;
+			var deletedCount = $("#sortable li").length - orderObject.length;
 			$("#sortable li:lt(" + deletedCount + ")").remove();
 		}
 
@@ -145,8 +150,8 @@
 			return defaultCustomNo;
 
 		$($.parseJSON(custom)).each(function() {
-			if ($(this).no > defaultCustomNo)
-				defaultCustomNo = $(this).no;
+			if (this.no > defaultCustomNo)
+				defaultCustomNo = this.no;
 		});
 		return defaultCustomNo;
 	}
@@ -291,7 +296,7 @@
 </body>
 <script>
 	var promotLoaded = false;
-	
+
 	//显示添加框
 	function showAdd() {
 		$('#addContainer').show();
@@ -311,17 +316,17 @@
 			alert("添加内容不能为空");
 			return;
 		}
-		
-		if(name.length==2)
-			name=name[0]+' '+name[1];
-		
+
+		if (name.length == 2)
+			name = name[0] + ' ' + name[1];
+
 		var customArray;
 		var custom = $.cookie('custom');
 		if (custom == undefined)
 			customArray = [];
 		else
 			customArray = $.parseJSON(custom);
-		
+
 		var currentNo = getCustomMaxNo() + 1;
 		customArray.push({
 			"name" : name,
@@ -332,10 +337,10 @@
 		$.cookie('custom', JSON.stringify(customArray), {
 			expires : 1000
 		});
-		
-		appendSite(currentNo,name,url);
+
+		appendSite(currentNo, name, url);
 		changeOrder();
-		alert(name+" 添加成功")
+		alert(name + " 添加成功")
 	}
 
 	//响应回车事件
