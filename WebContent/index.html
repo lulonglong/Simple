@@ -35,8 +35,7 @@
 		$("#trashContainer").droppable({
 			drop : function(event, ui) {
 				$(ui.draggable).remove();
-				//注意删除custom
-				
+				deleteCustom($(ui.draggable).attr("no"));
 				$("#trash_tip").css("display", "none");
 				$("#trash").css("display", "block");
 			},
@@ -140,6 +139,23 @@
 								+ url
 								+ ') no-repeat 0px;-webkit-background-size:16px 16px;-o-background-size:16px 16px;background-size:16px 16px;">'
 								+ name + '</a></li>');
+	}
+
+	//根据编号删除自定义的网址
+	function deleteCustom(no) {
+		if (no <= 10000)
+			return;
+
+		var customArary = $.parseJSON($.cookie('custom'));
+		$(customArary).each(function(index) {
+			if (this.no == no) {
+				customArary.splice(index, 1);
+				$.cookie('custom', JSON.stringify(customArary), {
+					expires : 1000
+				});
+				return;
+			}
+		});
 	}
 
 	//获取添加网址中的最大编号
