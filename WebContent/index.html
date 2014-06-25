@@ -94,6 +94,16 @@
 
 	function loadWebSites() {
 		//$("#sortable").css("opacity", 0);
+		//判断版本变更
+		if ($.cookie('version') != '1.0') {
+			$.removeCookie("order");
+			$.removeCookie("custom");
+			$.cookie('version', '1.0', {
+				expires : 1000
+			});
+		}
+		
+		//判断是否已经自定义过
 		var order = $.cookie('order');
 		if (order != undefined) {
 			var custom = $.cookie('custom');
@@ -113,8 +123,9 @@
 			//remove deleted item
 			var deletedCount = $("#sortable li").length - orderObject.length;
 			$("#sortable li:lt(" + deletedCount + ")").remove();
+		} else {
+			$("#sortable li[type=delete]").remove();
 		}
-
 		//$("#sortable").css("opacity", 1);
 	}
 
