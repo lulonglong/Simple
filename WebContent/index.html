@@ -95,10 +95,10 @@
 	function loadWebSites() {
 		//$("#sortable").css("opacity", 0);
 		//判断版本变更
-		if ($.cookie('version') != '1.0') {
+		if ($.cookie('version') != '0.9') {
 			$.removeCookie("order");
 			$.removeCookie("custom");
-			$.cookie('version', '1.0', {
+			$.cookie('version', '0.9', {
 				expires : 1000
 			});
 		}
