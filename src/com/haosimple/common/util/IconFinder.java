@@ -1,4 +1,4 @@
-package com.haosimple.util;
+package com.haosimple.common.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
