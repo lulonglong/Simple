@@ -34,9 +34,11 @@ public class MoveUrlOperateServlet extends BaseServlet {
 		}
 		catch ( SQLException e ) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "030001" );
 		}
 		catch ( Exception e ) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "030002" );
 		}
 
 		logger.info( vo.toJsonString() );

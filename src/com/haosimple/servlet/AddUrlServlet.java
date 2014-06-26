@@ -33,9 +33,11 @@ public class AddUrlServlet extends BaseServlet {
 		}
 		catch ( SQLException e ) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "010002" );
 		}
 		catch (Exception e) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "010003" );
 		}
 		
 		logger.info( vo.toJsonString() );

@@ -119,6 +119,7 @@ public class UrlOperateDaoImpl extends BaseDao {
 				: Configuration.getValueByKey( "dbusername" );// SaeUserInfo.getAccessKey();
 		String password = Configuration.getValueByKey( "dbpassword" ) == null ? SaeUserInfo.getSecretKey()
 				: Configuration.getValueByKey( "dbpassword" );// SaeUserInfo.getSecretKey();
+		logger.info( "url: "+url+" username: "+username+" pass "+password );
 		Connection conn = DriverManager.getConnection( url, username, password );
 		return conn;
 	}

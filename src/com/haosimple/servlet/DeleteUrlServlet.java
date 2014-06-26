@@ -35,9 +35,11 @@ public class DeleteUrlServlet extends BaseServlet {
 		}
 		catch ( SQLException e ) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "020002" );
 		}
 		catch (Exception e) {
 			logger.error( StringUtil.getExceptionStack( e ) );
+			vo.setErrorCode( "020003" );
 		}
 		
 		logger.info( vo.toJsonString() );
