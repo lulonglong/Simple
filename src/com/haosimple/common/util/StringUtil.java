@@ -48,4 +48,17 @@ public class StringUtil {
 
 		return result.toString();
 	}
+
+	
+	private static String webRootPath=null;
+	/**
+	 * @param prefix
+	 */
+	public static void setWebRootPath( String webRootPathArg ) {
+		webRootPath=webRootPathArg;
+	}
+	
+	public static String getWebRootPath() {
+		return webRootPath;
+	}
 }

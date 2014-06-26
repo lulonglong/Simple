@@ -6,12 +6,13 @@ import javax.servlet.ServletContextListener;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.haosimple.common.util.Define;
+import com.haosimple.common.util.StringUtil;
 
 /**
  * Descriptions
  *
  * @version 2014-6-26
- * @author Suntec
+ * @author long
  * @since JDK1.6
  *
  */
@@ -32,7 +33,7 @@ public class ContextInitListener implements ServletContextListener {
 	@Override
 	public void contextInitialized( ServletContextEvent arg0 ) {
 		String prefix = arg0.getServletContext().getRealPath("/");
-		System.out.println(prefix);
+		StringUtil.setWebRootPath(prefix);
 		PropertyConfigurator.configure( prefix+Define.LOG4J_PATH );
 	}
 

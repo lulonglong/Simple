@@ -18,6 +18,7 @@ public class UrlOperateDaoImpl extends BaseDao{
 	}
 	
 	private final static String INSERT_URL_SQL="insert tb_url(url) values(?)";
+	private final static String OPERATE_URL_SQL="insert tb_url_operate(url,type,useragent,userip) values(?,?,?,?)";
 	
 	public void insertUrl(String url){
 		
