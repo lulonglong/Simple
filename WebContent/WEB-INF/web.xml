@@ -16,7 +16,9 @@
 		<filter-name>PrintRequestInfoFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<listener>
+		<listener-class>com.haosimple.common.listener.ContextInitListener</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>AddUrlServlet</servlet-name>
 		<servlet-class>com.haosimple.servlet.AddUrlServlet</servlet-class>

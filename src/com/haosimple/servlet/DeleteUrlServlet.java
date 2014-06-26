@@ -1,38 +1,26 @@
 package com.haosimple.servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.haosimple.common.servlet.BaseServlet;
 
 /**
  * Servlet implementation class AddUrlServlet
  */
 
-public class DeleteUrlServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteUrlServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+public class DeleteUrlServlet extends BaseServlet {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError( HttpServletResponse.SC_FORBIDDEN );
-	}
+	/** */
+	private static final long serialVersionUID = 1515204880936343477L;
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
 		// TODO Auto-generated method stub
+		logger.info( "rozhi################################################" );
+		return null;
 	}
 
 }

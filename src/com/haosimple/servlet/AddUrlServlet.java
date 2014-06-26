@@ -1,38 +1,23 @@
 package com.haosimple.servlet;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.haosimple.common.servlet.BaseServlet;
 
 /**
  * Servlet implementation class AddUrlServlet
  */
 
-public class AddUrlServlet extends HttpServlet {
+public class AddUrlServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddUrlServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError( HttpServletResponse.SC_FORBIDDEN );
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
 		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
