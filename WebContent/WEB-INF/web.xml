@@ -39,4 +39,14 @@
 		<url-pattern>/deleteurl</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>MoveUrlOperateServlet</servlet-name>
+		<servlet-class>com.haosimple.servlet.MoveUrlOperateServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoveUrlOperateServlet</servlet-name>
+		<url-pattern>/move</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -1,10 +1,11 @@
 package com.haosimple.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+
 import com.haosimple.common.dao.BaseDao;
 import com.haosimple.common.util.Configuration;
 import com.haosimple.common.util.Define;
@@ -46,7 +47,7 @@ public class UrlOperateDaoImpl extends BaseDao {
 	}
 
 	// 转移数据
-	public int moveData( Date date, int singleMaxCount ) throws SQLException {
+	public int moveData( Timestamp date, int singleMaxCount ) throws SQLException {
 		Connection conn = getConnection();
 		conn.setAutoCommit( false );
 		int movedCount = 0;
@@ -80,23 +81,23 @@ public class UrlOperateDaoImpl extends BaseDao {
 		finally {
 			closeConnection( conn );
 		}
-
+		logger.info( "moved count " + movedCount );
 		return movedCount;
 	}
 
 	// 将数据插入备份表
-	private int insertData( Connection conn, Date date, int maxCount ) throws SQLException {
+	private int insertData( Connection conn, Timestamp date, int maxCount ) throws SQLException {
 		PreparedStatement statement = conn.prepareStatement( INSERT_OPERATE_URL_HISTORY_SQL );
-		statement.setDate( 1, date );
+		statement.setTimestamp( 1, date );
 		statement.setInt( 2, maxCount );
 
 		return statement.executeUpdate();
 	}
 
 	// 删除已备份数据
-	private int deleteData( Connection conn, Date date, int maxCount ) throws SQLException {
+	private int deleteData( Connection conn, Timestamp date, int maxCount ) throws SQLException {
 		PreparedStatement statement = conn.prepareStatement( DELETE_OPERATE_URL_SQL );
-		statement.setDate( 1, date );
+		statement.setTimestamp( 1, date );
 		statement.setInt( 2, maxCount );
 		return statement.executeUpdate();
 	}
