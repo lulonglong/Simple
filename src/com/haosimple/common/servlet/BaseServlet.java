@@ -23,9 +23,8 @@ public abstract class BaseServlet extends HttpServlet {
 
 	@Override
 	public void doGet( HttpServletRequest req, HttpServletResponse res ) throws IOException {
-		logger.info( "doget refused" );
-		logger.info( "doget refused" );
-		res.sendError( HttpServletResponse.SC_FORBIDDEN );
+		//res.sendError( HttpServletResponse.SC_FORBIDDEN );
+		doPost( req, res );
 	}
 
 	@Override
