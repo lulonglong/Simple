@@ -45,7 +45,7 @@ public class PrintRequestInfoFilter implements Filter {
 				headMap.put(key, req.getHeader(key));
 			}
 
-			logger.info(FUNCTION_NAME + headMap);
+			logger.debug(FUNCTION_NAME + headMap);
 		}
 
 		logger.info(FUNCTION_NAME + "----- 【Request信息结束】 -----");
