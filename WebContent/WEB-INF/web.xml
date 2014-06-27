@@ -8,14 +8,6 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<filter>
-		<filter-name>PrintRequestInfoFilter</filter-name>
-		<filter-class>com.haosimple.common.filter.PrintRequestInfoFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>PrintRequestInfoFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 	<listener>
 		<listener-class>com.haosimple.common.listener.ContextInitListener</listener-class>
 	</listener>
@@ -47,6 +39,26 @@
 	<servlet-mapping>
 		<servlet-name>MoveUrlOperateServlet</servlet-name>
 		<url-pattern>/move</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddBreakServlet</servlet-name>
+		<servlet-class>com.haosimple.servlet.AddBreakServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddBreakServlet</servlet-name>
+		<url-pattern>/addBreak</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetBreakServlet</servlet-name>
+		<servlet-class>com.haosimple.servlet.GetBreakServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetBreakServlet</servlet-name>
+		<url-pattern>/getBreak</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

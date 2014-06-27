@@ -13,7 +13,7 @@ public abstract class BaseServlet extends HttpServlet {
 	/** */
 	private static final long serialVersionUID = 4660836483106903265L;
 
-	public static final String CONTENT_TYPE_TEXT_XML_UTF8 = "text/xml; charset=UTF-8";
+	public static final String CONTENT_TYPE_JSON_UTF8 = "text/plain; charset=UTF-8";
 
 	protected Logger logger;
 
@@ -32,6 +32,7 @@ public abstract class BaseServlet extends HttpServlet {
 		String result = null;
 
 		try {
+			req.setCharacterEncoding( "utf-8" );
 			result = execute( req, res );
 		}
 		catch ( Exception e ) {
@@ -51,7 +52,7 @@ public abstract class BaseServlet extends HttpServlet {
 
 		res.addHeader( "Pragma", "no-cache" );
 		res.addHeader( "Cache-Control", "no-cache" );
-		res.setContentType( CONTENT_TYPE_TEXT_XML_UTF8 );
+		res.setContentType( CONTENT_TYPE_JSON_UTF8 );
 		res.setCharacterEncoding( "UTF-8" );
 		DataOutputStream out = new DataOutputStream( res.getOutputStream() );
 		out.write( body );

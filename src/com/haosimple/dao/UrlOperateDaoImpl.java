@@ -13,14 +13,6 @@ import com.haosimple.common.util.StringUtil;
 import com.sina.sae.util.SaeUserInfo;
 
 public class UrlOperateDaoImpl extends BaseDao {
-	static {
-		try {
-			Class.forName( "com.mysql.jdbc.Driver" );
-		}
-		catch ( ClassNotFoundException e ) {
-			logger.error( "com.mysql.jdbc.Driver not existed" );
-		}
-	}
 
 	private final static String INSERT_URL_SQL = "insert tb_url(url) values(?)";
 	private final static String OPERATE_URL_SQL = "insert tb_url_operate(url,type,useragent,userip) values(?,?,?,?)";

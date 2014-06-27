@@ -102,7 +102,7 @@
 				expires : 1000
 			});
 		}
-		
+
 		//判断是否已经自定义过
 		var order = $.cookie('order');
 		if (order != undefined) {
@@ -208,7 +208,8 @@
 	<div>
 		<div id="head">
 			<a href="#" onclick="showAbout()">帮助</a> <a href="#"
-				onclick="reset()">重置</a> <a href="#" onclick="showAdd()">添加</a><a id="break" href="http://mp.weixin.qq.com/s?__biz=MjM5NjAxOTU4MA==&amp;mid=275329283&amp;idx=1&amp;sn=f86a8a623f52004f816cd66c3cbcc191#rd" target="_blank" title="每天一篇正能量">歇会吧</a>
+				onclick="reset()">重置</a> <a href="#" onclick="showAdd()">添加</a><a
+				id="break" href="#" target="_blank" title="每天一篇正能量">歇会吧</a>
 		</div>
 		<div id="logo">Simple</div>
 		<div id="trashContainer">
@@ -296,7 +297,8 @@
 			<li>点击重置可恢复到最最原始的页面</li>
 			<li>点击添加可自由添加您喜欢的网址</li>
 			<li>看在我们连logo都省了的份上，分享给身边的屌丝们吧</li>
-			<li>请关注<a href="#" style="color:red;">Simple上网导航</a>官方微博，我们一起努力</li>
+			<li>请关注<a href="#" style="color: red;">Simple上网导航</a>官方微博，我们一起努力
+			</li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
@@ -368,8 +370,15 @@
 		alert(name + " 添加成功")
 	}
 
-	//响应回车事件
 	$(document).ready(function() {
+		//获取break
+		$.post("./getBreak", function(data) {
+			if (data.status == 0) {
+				$("#break").attr("href", data.url);
+			}
+		}, "json");
+
+		//响应回车事件
 		$("#mysite-name-add,#mysite-url-add").keydown(function(e) {
 			// 回车键
 			if (e.keyCode == 13) {
