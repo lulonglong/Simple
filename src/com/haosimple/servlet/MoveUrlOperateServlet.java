@@ -24,6 +24,11 @@ public class MoveUrlOperateServlet extends BaseServlet {
 	private static final long serialVersionUID = 1515204880936343477L;
 
 	@Override
+	public void doGet( HttpServletRequest req, HttpServletResponse res ) throws IOException {
+		super.doPost( req, res );
+	}
+	
+	@Override
 	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
 		CommonResultVO vo = new CommonResultVO();
 		Timestamp timestamp=new Timestamp( new Date().getTime() );
