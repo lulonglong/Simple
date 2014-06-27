@@ -27,11 +27,11 @@ public class GetBreakServlet extends BaseServlet {
 		}
 		catch ( SQLException e ) {
 			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "010002" );
+			vo.setErrorCode( "050001" );
 		}
 		catch (Exception e) {
 			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "010003" );
+			vo.setErrorCode( "050002" );
 		}
 		
 		logger.info( vo.toJsonString() );
