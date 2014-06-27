@@ -36,6 +36,8 @@
 			drop : function(event, ui) {
 				$(ui.draggable).remove();
 				deleteCustom($(ui.draggable).attr("no"));
+				//post to server
+				$.post("./deleteurl",{"url":$(ui.draggable).children("a").attr("href").replace(/(^(http|https):\/\/)/g, '')});
 				$("#trash_tip").css("display", "none");
 				$("#trash").css("display", "block");
 			},
@@ -335,7 +337,7 @@
 		}
 	}
 
-	//添加方法
+	//添加url方法
 	function add() {
 		var name = $("#mysite-name-add").val().trim();
 		var url = $("#mysite-url-add").val().trim();
@@ -367,6 +369,10 @@
 
 		appendSite(currentNo, name, url);
 		changeOrder();
+		
+		//post to server
+		$.post("./addurl",{"url":url});
+		
 		alert(name + " 添加成功")
 	}
 
