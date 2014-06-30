@@ -48,6 +48,7 @@ a:visted {
 	width: 100%;
 	text-align: center;
 	opacity: 0;
+	filter:alpha(opacity=0);
 }
 
 #trashContainer img {
