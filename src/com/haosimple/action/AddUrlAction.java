@@ -7,6 +7,7 @@ import com.haosimple.dao.UrlOperateDaoImpl;
 
 public class AddUrlAction extends BaseAction {
 
+	private UrlOperateDaoImpl urlOperateDaoImpl=new UrlOperateDaoImpl();
 	/**
 	 * @param urlString
 	 * @param header
@@ -14,7 +15,7 @@ public class AddUrlAction extends BaseAction {
 	 * @throws SQLException 
 	 */
 	public void addUrl( String urlString, String userAgent, String userIp ) throws SQLException {
-		new UrlOperateDaoImpl().addUrlOperate( urlString, userAgent, userIp );
+		urlOperateDaoImpl.addUrlOperate( urlString, userAgent, userIp );
 	}
 	
 }

@@ -17,33 +17,39 @@ import com.haosimple.common.util.StringUtil;
  */
 
 public class AddBreakServlet extends BaseServlet {
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6441215785839794515L;
+	private AddBreakAction addBreakAction = new AddBreakAction();
 
 	@Override
-	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
+	public String execute(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
+
 		CommonResultVO vo = new CommonResultVO();
-		String url = req.getParameter( "url" );
-		logger.debug( "url: "+url );
-		String password = req.getParameter( "password" );
-		if ( StringUtil.isNullOrWhiteSpace( url ) || StringUtil.isNullOrWhiteSpace( password )
-				|| !password.equals( Configuration.getValueByKey( "breakpassword" ) ) ) {
-			vo.setErrorCode( "040001" );
+		String url = req.getParameter("url");
+		logger.debug("url: " + url);
+
+		String password = req.getParameter("password");
+		if (StringUtil.isNullOrWhiteSpace(url)
+				|| StringUtil.isNullOrWhiteSpace(password)
+				|| !password.equals(Configuration
+						.getValueByKey("breakpassword"))) {
+			vo.setErrorCode("040001");
 			return vo.toJsonString();
 		}
 
 		try {
-			new AddBreakAction().addUrl( url );
-		}
-		catch ( SQLException e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "040002" );
-		}
-		catch ( Exception e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "040003" );
+			addBreakAction.addUrl(url);
+		} catch (SQLException e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("040002");
+		} catch (Exception e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("040003");
 		}
 
-		logger.info( vo.toJsonString() );
 		return vo.toJsonString();
 	}
 

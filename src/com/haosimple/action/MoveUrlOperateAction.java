@@ -7,12 +7,13 @@ import com.haosimple.common.action.BaseAction;
 import com.haosimple.dao.UrlOperateDaoImpl;
 
 public class MoveUrlOperateAction extends BaseAction {
+	private UrlOperateDaoImpl urlOperateDaoImpl = new UrlOperateDaoImpl();
 
 	/**
 	 * @param urlString
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void move(Timestamp date, int singleMaxCount ) throws SQLException{
-			new UrlOperateDaoImpl().moveData( date, singleMaxCount );
+	public void move(Timestamp date, int singleMaxCount) throws SQLException {
+		urlOperateDaoImpl.moveData(date, singleMaxCount);
 	}
 }

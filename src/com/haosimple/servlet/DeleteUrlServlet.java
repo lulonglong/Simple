@@ -18,31 +18,32 @@ public class DeleteUrlServlet extends BaseServlet {
 
 	/** */
 	private static final long serialVersionUID = 1515204880936343477L;
+	private InsertUrlAction insertUrlAction = new InsertUrlAction();
+	private DeleteUrlAction deleteUrlAction = new DeleteUrlAction();
 
 	@Override
-	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
-		CommonResultVO vo=new CommonResultVO();
-		String urlString=req.getParameter( "url" );
-		
-		if(StringUtil.isNullOrWhiteSpace( urlString )){
-			vo.setErrorCode( "020001" );
+	public String execute(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
+		CommonResultVO vo = new CommonResultVO();
+		String urlString = req.getParameter("url");
+
+		if (StringUtil.isNullOrWhiteSpace(urlString)) {
+			vo.setErrorCode("020001");
 			return vo.toJsonString();
 		}
-		
+
 		try {
-			new InsertUrlAction().insertUrl(urlString);
-			new DeleteUrlAction().deleteUrl(urlString,req.getHeader( "user-agent" ),req.getRemoteAddr());
+			insertUrlAction.insertUrl(urlString);
+			deleteUrlAction.deleteUrl(urlString, req.getHeader("user-agent"),
+					req.getRemoteAddr());
+		} catch (SQLException e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("020002");
+		} catch (Exception e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("020003");
 		}
-		catch ( SQLException e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "020002" );
-		}
-		catch (Exception e) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "020003" );
-		}
-		
-		logger.info( vo.toJsonString() );
+
 		return vo.toJsonString();
 	}
 

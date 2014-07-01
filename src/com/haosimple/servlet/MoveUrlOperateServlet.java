@@ -22,31 +22,31 @@ public class MoveUrlOperateServlet extends BaseServlet {
 
 	/** */
 	private static final long serialVersionUID = 1515204880936343477L;
+	private MoveUrlOperateAction moveUrlOperateAction = new MoveUrlOperateAction();
 
 	@Override
-	public void doGet( HttpServletRequest req, HttpServletResponse res ) throws IOException {
-		super.doPost( req, res );
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
+		super.doPost(req, res);
 	}
-	
+
 	@Override
-	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
+	public String execute(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
 		CommonResultVO vo = new CommonResultVO();
-		Timestamp timestamp=new Timestamp( new Date().getTime() );
+		Timestamp timestamp = new Timestamp(new Date().getTime());
 
 		try {
-			new MoveUrlOperateAction().move( timestamp,
-					Integer.valueOf( Configuration.getValueByKey( "moveSingleMaxCount" ) ) );
-		}
-		catch ( SQLException e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "030001" );
-		}
-		catch ( Exception e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "030002" );
+			moveUrlOperateAction.move(timestamp, Integer.valueOf(Configuration
+					.getValueByKey("moveSingleMaxCount")));
+		} catch (SQLException e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("030001");
+		} catch (Exception e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("030002");
 		}
 
-		logger.info( vo.toJsonString() );
 		return vo.toJsonString();
 	}
 

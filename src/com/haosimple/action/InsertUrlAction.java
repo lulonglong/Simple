@@ -6,19 +6,17 @@ import com.haosimple.dao.UrlOperateDaoImpl;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 public class InsertUrlAction extends BaseAction {
+	private UrlOperateDaoImpl urlOperateDaoImpl = new UrlOperateDaoImpl();
 
 	/**
 	 * @param urlString
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void insertUrl( String urlString ) throws SQLException{
+	public void insertUrl(String urlString) throws SQLException {
 		try {
-			new UrlOperateDaoImpl().insertUrl( urlString );
+			urlOperateDaoImpl.insertUrl(urlString);
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			logger.debug("url has existed");
 		}
-		catch ( MySQLIntegrityConstraintViolationException e ) {
-			logger.debug( "url has existed" );
-		}
-		
 	}
-	
 }

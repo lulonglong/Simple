@@ -15,32 +15,37 @@ import com.haosimple.common.util.StringUtil;
  */
 
 public class AddUrlServlet extends BaseServlet {
-	private static final long serialVersionUID = 1L;
-       
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8744589605023060759L;
+	private InsertUrlAction insertUrlAction = new InsertUrlAction();
+	private AddUrlAction addUrlAction = new AddUrlAction();
+
 	@Override
-	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
-		CommonResultVO vo=new CommonResultVO();
-		String urlString=req.getParameter( "url" );
+	public String execute(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
 		
-		if(StringUtil.isNullOrWhiteSpace( urlString )){
-			vo.setErrorCode( "010001" );
+		CommonResultVO vo = new CommonResultVO();
+		String urlString = req.getParameter("url");
+
+		if (StringUtil.isNullOrWhiteSpace(urlString)) {
+			vo.setErrorCode("010001");
 			return vo.toJsonString();
 		}
-		
+
 		try {
-			new InsertUrlAction().insertUrl(urlString);
-			new AddUrlAction().addUrl(urlString,req.getHeader( "user-agent" ),req.getRemoteAddr());
+			insertUrlAction.insertUrl(urlString);
+			addUrlAction.addUrl(urlString, req.getHeader("user-agent"),
+					req.getRemoteAddr());
+		} catch (SQLException e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("010002");
+		} catch (Exception e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("010003");
 		}
-		catch ( SQLException e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "010002" );
-		}
-		catch (Exception e) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "010003" );
-		}
-		
-		logger.info( vo.toJsonString() );
+
 		return vo.toJsonString();
 	}
 

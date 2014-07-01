@@ -6,15 +6,17 @@ import com.haosimple.common.action.BaseAction;
 import com.haosimple.dao.UrlOperateDaoImpl;
 
 public class DeleteUrlAction extends BaseAction {
+	private UrlOperateDaoImpl urlOperateDaoImpl = new UrlOperateDaoImpl();
 
 	/**
 	 * @param urlString
 	 * @param header
 	 * @param remoteAddr
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void deleteUrl( String urlString, String userAgent, String userIp ) throws SQLException {
-		new UrlOperateDaoImpl().deleteUrlOperate( urlString, userAgent, userIp );
+	public void deleteUrl(String urlString, String userAgent, String userIp)
+			throws SQLException {
+		urlOperateDaoImpl.deleteUrlOperate(urlString, userAgent, userIp);
 	}
 
 }

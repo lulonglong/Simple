@@ -16,25 +16,28 @@ import com.haosimple.vo.BreakResultVO;
  */
 
 public class GetBreakServlet extends BaseServlet {
-	private static final long serialVersionUID = 1L;
-       
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8941071840145155189L;
+	private GetBreakAction getBreakAction = new GetBreakAction();
+
 	@Override
-	public String execute( HttpServletRequest req, HttpServletResponse res ) throws IOException {
-		BreakResultVO vo=new BreakResultVO();
-		
+	public String execute(HttpServletRequest req, HttpServletResponse res)
+			throws IOException {
+		BreakResultVO vo = new BreakResultVO();
+
 		try {
-			vo.setUrl(new GetBreakAction().getUrl());
+			vo.setUrl(getBreakAction.getUrl());
+		} catch (SQLException e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("050001");
+		} catch (Exception e) {
+			logger.error(StringUtil.getExceptionStack(e));
+			vo.setErrorCode("050002");
 		}
-		catch ( SQLException e ) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "050001" );
-		}
-		catch (Exception e) {
-			logger.error( StringUtil.getExceptionStack( e ) );
-			vo.setErrorCode( "050002" );
-		}
-		
-		logger.info( vo.toJsonString() );
+
 		return vo.toJsonString();
 	}
 
