@@ -38,7 +38,7 @@ public class DBUtil {
 		ds.setUser(username);
 		ds.setPassword(password);
 		ds.setMinPoolSize(2);
-		ds.setMaxPoolSize(50);
+		ds.setMaxPoolSize(20);
 		ds.setMaxStatementsPerConnection(6);
 		ds.setMaxStatements(100);
 		//ds.setAutomaticTestTable("tb_c3p0_test");
