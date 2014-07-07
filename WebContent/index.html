@@ -1,18 +1,16 @@
 <!doctype html>
 <html lang="zh">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <meta name="keywords"
-	content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,好简单导航,haosimple导航"/>
+	content="上网导航,网址大全,网址导航,simple上网导航,简单导航,simple网址大全,清晰网址导航,常用网站,好简单导航,haosimple导航" />
 <meta name="description"
-	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，最简洁的上网导航。"/>
+	content="Simple--简洁清晰的网址导航，为用户提供常用网址、自定义网址，最简洁的上网导航。" />
 <title>Simple 最简洁的上网导航</title>
 <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
-<script
-	src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-<script
-	src="http://libs.baidu.com/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jqueryui/1.10.2/jquery-ui.min.js"></script>
 <script charset="utf-8" src="js/jquery.cookie.js"></script>
 <script>
 	/** trim() method for String */
@@ -32,24 +30,28 @@
 				$("#trashContainer").css("opacity", 1);
 			}
 		}).disableSelection();
-		$("#trashContainer").droppable({
-			drop : function(event, ui) {
-				$(ui.draggable).remove();
-				deleteCustom($(ui.draggable).attr("no"));
-				//post to server
-				$.post("./deleteurl",{"url":$(ui.draggable).children("a").attr("href").replace(/(^(http|https):\/\/)/g, '')});
-				$("#trash_tip").css("display", "none");
-				$("#trash").css("display", "block");
-			},
-			out : function(event, ui) {
-				$("#trash_tip").css("display", "none");
-				$("#trash").css("display", "block");
-			},
-			over : function(event, ui) {
-				$("#trash").css("display", "none");
-				$("#trash_tip").css("display", "block");
-			}
-		});
+		$("#trashContainer").droppable(
+				{
+					drop : function(event, ui) {
+						$(ui.draggable).remove();
+						deleteCustom($(ui.draggable).attr("no"));
+						//post to server
+						$.post("./deleteurl", {
+							"url" : $(ui.draggable).children("a").attr("href")
+									.replace(/(^(http|https):\/\/)/g, '')
+						});
+						$("#trash_tip").css("display", "none");
+						$("#trash").css("display", "block");
+					},
+					out : function(event, ui) {
+						$("#trash_tip").css("display", "none");
+						$("#trash").css("display", "block");
+					},
+					over : function(event, ui) {
+						$("#trash").css("display", "none");
+						$("#trash_tip").css("display", "block");
+					}
+				});
 		//search baidu or google
 		$("#search").keydown(
 				function(e) {
@@ -95,7 +97,6 @@
 	}
 
 	function loadWebSites() {
-		//$("#sortable").css("opacity", 0);
 		//判断版本变更
 		if ($.cookie('ver') != '0.9') {
 			$.removeCookie("order");
@@ -128,7 +129,6 @@
 		} else {
 			$("#sortable li[type=delete]").remove();
 		}
-		//$("#sortable").css("opacity", 1);
 	}
 
 	//保存网址顺序
@@ -207,24 +207,24 @@
 </script>
 </head>
 <body>
-	<div>
-		<div id="head">
-			<a href="#" onclick="showAbout()">帮助</a> <a href="#"
-				onclick="reset()">重置</a> <a href="#" onclick="showAdd()">添加</a><a
-				id="break" href="#" target="_blank" title="每天一篇正能量">歇会吧</a>
-		</div>
-		<div id="logo">Simple</div>
-		<div id="trashContainer">
-			<img id="trash" src="img/trash.png" /><img id="trash_tip"
-				src="img/trash_tip.png" style="display: none" />
-		</div>
+	<div id="head">
+		<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a>
+		<a href="#" onclick="showAdd()">添加</a><a id="break" href="#"
+			target="_blank" title="每天一篇正能量">歇会吧</a>
+	</div>
+	<div id="logo">Simple</div>
+	<div id="trashContainer">
+		<img id="trash" src="img/trash.png" /><img id="trash_tip"
+			src="img/trash_tip.png" style="display: none" />
+	</div>
+	<div id="main" style="display: block">
 		<div id="searchContainer">
 			<form id="searchForm" action="http://www.baidu.com/s" target="_blank">
 				<input id="search" type="text" name="wd" baiduSug="2" />
 			</form>
 		</div>
 		<div style="margin-top: 50px">
-			<ul id="sortable" class="connectedSortable">
+			<ul id="sortable">
 				<li no="1"><a href="http://www.baidu.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px 0px">百
 						度</a></li>
@@ -267,7 +267,8 @@
 				<li no="15"><a href="http://www.youku.com" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -448px">优
 						酷</a></li>
-				<li no="16"  type="delete"><a href="http://www.iqiyi.com/" target="_blank"
+				<li no="16" type="delete"><a href="http://www.iqiyi.com/"
+					target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -480px">爱奇艺</a></li>
 				<li no="17"><a href="http://www.12306.cn" target="_blank"
 					style="background: url(img/defaultIcon.png) no-repeat 0px -512px">12306</a></li>
@@ -287,9 +288,24 @@
 						房</a></li>
 			</ul>
 		</div>
-		<div id="footer">
-		</div>
 	</div>
+	<div id="mysite">
+		<div id="addtip"></div>
+		<div class="txt">网站名称：</div>
+		<div class="site-input site-name">
+			<input type="text" id="mysite-name-add" placeholder="如：Simple" />
+		</div>
+		<div class="txt txt-url">网址：</div>
+		<div class="site-input site-url">
+			<input type="text" id="mysite-url-add"
+				placeholder="如：www.haosimple.com" />
+		</div>
+		<button onclick="add()" id="btn-site-add">添加</button>
+		<img class="close" onclick="$('#mysite').hide();$('#main').show();"
+			src="img/close.png" />
+	</div>
+	<div id="footer"></div>
+
 	<div id="about">
 		<ol>
 			<li>按空格键，可将焦点置于搜索框内; 按 Ctrl+&lt;- 键，可清空搜索框</li>
@@ -304,30 +320,14 @@
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
 	</div>
-	<div id="addContainer">
-		<div class="mask"></div>
-		<div id="mysite">
-			<div class="txt">网站名称：</div>
-			<div class="site-input site-name">
-				<input type="text" id="mysite-name-add" placeholder="如：Simple" />
-			</div>
-			<div class="txt txt-url">网址：</div>
-			<div class="site-input site-url">
-				<input type="text" id="mysite-url-add"
-					placeholder="如：www.haosimple.com" />
-			</div>
-			<button onclick="add()" id="btn-site-add">添加</button>
-			<img class="close" onclick="$('#addContainer').hide();"
-				src="img/close.png" />
-		</div>
-	</div>
 </body>
 <script>
 	var promotLoaded = false;
 
 	//显示添加框
 	function showAdd() {
-		$('#addContainer').show();
+		$("#main").hide();
+		$('#mysite').show();
 		if (!promotLoaded) {
 			promotLoaded = true;
 			$(document.body)
@@ -336,12 +336,27 @@
 		}
 	}
 
+	function IsURL(str_url) {
+		var strRegex = "(([0-9]{1,3}.){3}[0-9]{1,3}|(www\.|[a-zA-Z]\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,3}(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$)";
+		var re = new RegExp(strRegex);
+		if (re.test(str_url)) {
+			return (true);
+		} else {
+			return (false);
+		}
+	}
+
 	//添加url方法
 	function add() {
 		var name = $("#mysite-name-add").val().trim();
 		var url = $("#mysite-url-add").val().trim();
 		if (name == '' || url == '') {
-			alert("添加内容不能为空");
+			addtip("添加内容不能为空","red");
+			return;
+		}
+
+		if (!IsURL(url)) {
+			addtip("网址不规范","red");
 			return;
 		}
 
@@ -368,11 +383,19 @@
 
 		appendSite(currentNo, name, url);
 		changeOrder();
-		
+
 		//post to server
-		$.post("./addurl",{"url":url});
-		
-		alert(name + " 添加成功")
+		$.post("./addurl", {
+			"url" : url
+		});
+
+		addtip(name + " 添加成功","green");
+	}
+
+	function addtip(tip,color) {
+		$("#addtip").fadeTo(1000, 1);
+		$("#addtip").css("color",color).html(tip);
+		$("#addtip").fadeTo(1000, 0);
 	}
 
 	$(document).ready(function() {
@@ -392,6 +415,8 @@
 			}
 		});
 	});
+	//ip,www.XXX.XXX,XXX.XXXX,
+	//(([0-9]{1,3}.){3}[0-9]{1,3}|(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk)(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$)
 </script>
 <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
 </html>

@@ -13,7 +13,7 @@ function addSug() {
 	var url_container = $(".site-url");
 	var name_container_offset = name_container.offset();
 	var url_container_offset = url_container.offset();
-	$(document.body).append('<ul class="mysite-suggest"></ul>');
+	$("#mysite").append('<ul class="mysite-suggest"></ul>');
 	$(".mysite-suggest").css("top",
 			(name_container_offset.top + name_container.height())).css("left",
 			name_container_offset.left).width(
@@ -135,14 +135,6 @@ $(document)
 											return;
 										}
 
-										// 数字字母退格删除空格
-										// if (keyCode >= 48
-										// && keyCode <= 57
-										// || (keyCode >= 65 && keyCode <= 90)
-										// || keyCode == 8
-										// || keyCode == 46
-										// || keyCode == 32) {
-
 										// 获得搜索地址和搜索内容
 										var word;
 										var sugApiUrl;
@@ -165,7 +157,6 @@ $(document)
 												.setTimeout('getSite("' + word
 														+ '","' + sugApiUrl
 														+ '")', 400);
-										return false;//防止监听到空格按键，聚焦到搜索框
-										// }
+										return false;// 防止监听到空格按键，聚焦到搜索框
 									});
 				});
