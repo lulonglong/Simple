@@ -69,12 +69,18 @@ function changeHoverClass(li) {
 
 // 异步请求网站提示API
 function getSite(word, sugApiUrl) {
+	//防止mysite隐藏之后还请求的情况
+	if ($("#mysite").is(":hidden")) {
+		console.debug("cancel get site");
+		return;
+	}
+	
 	$.ajax({
 		type : "get",
 		url : sugApiUrl + word,
-		dataType : "jsonp",// 数据类型为jsonp
-		jsonp : "cb",// 服务端用于接收callback调用的function名的参数，360导航必须是cb
-		jsonpCallback : "callback",// 不能采用默认的函数名，360导航对回调名称有限制
+		dataType : "jsonp",
+		jsonp : "cb",
+		jsonpCallback : "callback",
 		success : function(data) {
 			clearSug();// 先清除上一次的列表
 
