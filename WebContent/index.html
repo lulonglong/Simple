@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh">
+<html lang="zh" style="height: 100%">
 <head>
 <meta charset="utf-8" />
 <meta name="keywords"
@@ -291,6 +291,7 @@
 	</div>
 	<div id="mysite">
 		<div id="addtip"></div>
+		<div id="area"></div>
 		<div class="txt">网站名称：</div>
 		<div class="site-input site-name">
 			<input type="text" id="mysite-name-add" placeholder="如：Simple" />
@@ -301,8 +302,7 @@
 				placeholder="如：www.haosimple.com" />
 		</div>
 		<button onclick="add()" id="btn-site-add">添加</button>
-		<img class="close" onclick="$('#mysite').hide();$('#main').show();"
-			src="img/close.png" />
+		<button onclick="hideAdd()" id="btn-site-back">返回</button>
 	</div>
 	<div id="footer"></div>
 
@@ -330,13 +330,24 @@
 		$('#mysite').show();
 		if (!promotLoaded) {
 			promotLoaded = true;
+			$("#area").click(
+					function() {
+						if ($("#mysite").is(":visible")
+								&& $(".mysite-suggest").is(":hidden"))
+							hideAdd();
+					});
 			$(document.body)
 					.append(
 							'<script type="text/javascript" charset="utf-8" src="js/autopromot.js"/>');
 		}
 	}
 
-	function IsURL(str_url) {
+	function hideAdd() {
+		$('#mysite').hide();
+		$('#main').show();
+	}
+
+	function isURL(str_url) {
 		var strRegex = "(([0-9]{1,3}.){3}[0-9]{1,3}|(www\.|[a-zA-Z]\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,3}(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$)";
 		var re = new RegExp(strRegex);
 		if (re.test(str_url)) {
@@ -351,12 +362,12 @@
 		var name = $("#mysite-name-add").val().trim();
 		var url = $("#mysite-url-add").val().trim();
 		if (name == '' || url == '') {
-			addtip("添加内容不能为空","red");
+			addtip("添加内容不能为空", "red");
 			return;
 		}
 
-		if (!IsURL(url)) {
-			addtip("网址不规范","red");
+		if (!isURL(url)) {
+			addtip("网址不规范", "red");
 			return;
 		}
 
@@ -383,18 +394,19 @@
 
 		appendSite(currentNo, name, url);
 		changeOrder();
-
+		$("#mysite-name-add").val('');
+		$("#mysite-url-add").val('');
+		addtip(name + " 添加成功", "green");
 		//post to server
 		$.post("./addurl", {
 			"url" : url
 		});
 
-		addtip(name + " 添加成功","green");
 	}
 
-	function addtip(tip,color) {
+	function addtip(tip, color) {
 		$("#addtip").fadeTo(1000, 1);
-		$("#addtip").css("color",color).html(tip);
+		$("#addtip").css("color", color).html(tip);
 		$("#addtip").fadeTo(1000, 0);
 	}
 
@@ -415,8 +427,6 @@
 			}
 		});
 	});
-	//ip,www.XXX.XXX,XXX.XXXX,
-	//(([0-9]{1,3}.){3}[0-9]{1,3}|(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk)(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$)
 </script>
 <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
 </html>

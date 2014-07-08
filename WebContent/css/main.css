@@ -3,6 +3,7 @@ body {
 	background-color: white;
 	text-align: center;
 	font-family: Arial, Verdana, Geneva, sans-serif;
+	height: 100%;
 }
 
 a:active {
@@ -48,7 +49,7 @@ a:visted {
 	width: 100%;
 	text-align: center;
 	opacity: 0;
-	filter: alpha(opacity = 0);
+	filter: alpha(opacity =   0);
 }
 
 #trashContainer img {
@@ -108,7 +109,15 @@ a:visted {
 	top: 100px;
 	text-align: center;
 	opacity: 0;
-	filter: alpha(opacity = 0);
+	filter: alpha(opacity =   0);
+}
+
+#area {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
 }
 
 #mysite {
@@ -130,6 +139,7 @@ a:visted {
 }
 
 #mysite .txt {
+	position: relative;
 	float: left;
 	line-height: 30px;
 	font-size: 14px
@@ -174,7 +184,8 @@ a:visted {
 	width: 198px
 }
 
-#btn-site-add {
+#btn-site-add,#btn-site-back {
+	position: relative;
 	width: 70px;
 	height: 28px;
 	text-align: center;
@@ -182,5 +193,6 @@ a:visted {
 	cursor: pointer;
 	font-size: 14px;
 	background-color: #47b902;
-	color: #fff
+	color: #fff;
+	margin-right: 20px;
 }
