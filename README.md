@@ -1,4 +1,4 @@
 simplePage
 ==========
 
-最简洁的网址导航
+www.haosimple.com
