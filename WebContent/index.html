@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh" style="height: 100%">
+<html lang="zh" style="height: 100%" xmlns:wb="http://open.weibo.com/wb">
 <head>
 <meta charset="utf-8" />
 <meta name="keywords"
@@ -208,6 +208,7 @@
 </head>
 <body>
 	<div id="head">
+		<wb:share-button style="float:right" appkey="190970940" addition="simple" type="button" default_text="www.haosimple.com 一个简洁的上网导航，不一样的玩法等你参与" ralateUid="5193087566" picture_search="false"></wb:share-button>
 		<a href="#" onclick="showAbout()">帮助</a> <a href="#" onclick="reset()">重置</a>
 		<a href="#" onclick="showAdd()">添加</a><a id="break" href="#"
 			target="_blank" title="天天有的看">歇会吧</a>
@@ -312,9 +313,8 @@
 			<li>默认搜索为百度，关键词前空一格则使用google搜索</li>
 			<li>网址可拖动调换位置并随意删除，可以添加您喜欢的网址</li>
 			<li>点击重置恢复到最最原始的页面</li>
-			<li>看在我们连logo都省了的份上，快来分享吧</li>
-			<!--  <li>请关注官方微博，我们一起努力
-			</li>-->
+			<!-- <li>看在我们连logo都省了的份上，快来分享吧</li> -->
+			<li>有趣的好玩的，请关注官方微博 <wb:follow-button uid="5193087566" type="red_1" width="67" height="24" ></wb:follow-button></li>
 		</ol>
 		<a style="float: right; text-decoration: none;" href="#"
 			onclick="$('#about').hide('fast');">关闭</a>
@@ -432,4 +432,5 @@
 	});
 </script>
 <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 </html>
