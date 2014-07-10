@@ -397,6 +397,7 @@
 		changeOrder();
 		$("#mysite-name-add").val('');
 		$("#mysite-url-add").val('');
+		$("#btn-site-back").focus();
 		addtip(name + " 添加成功", "green");
 		//post to server
 		$.post("./addurl", {
@@ -425,6 +426,7 @@
 			if (e.keyCode == 13) {
 				$("#mysite-name-add,#mysite-url-add").blur();
 				$("#btn-site-add").click();
+				return false;//阻止back
 			}
 		});
 	});
