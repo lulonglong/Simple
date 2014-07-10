@@ -19,7 +19,7 @@
 	};
 
 	$(function() {
-		$("#sortable").sortable({
+		$("#sortable").sortable({delay: 100,
 			stop : function(event, ui) {
 				$("#trashContainer").css("opacity", 0);
 			},
