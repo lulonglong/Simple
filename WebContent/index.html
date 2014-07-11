@@ -367,6 +367,7 @@
 			return;
 		}
 
+		url=url.replace(/^(http|https):\/\//,'');
 		if (!isURL(url)) {
 			addtip("网址不规范", "red");
 			return;
